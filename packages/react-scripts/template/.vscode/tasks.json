@@ -1,0 +1,55 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "isBuildCommand": true,
+            "taskName": "tsc",
+            "command": "./node_modules/.bin/tsc", // IMPORTANT: use the version in the workspace to trigger builds!
+            "isShellCommand": true,
+            "args": [
+                "-w",
+                "-p",
+                "."
+            ],
+            "showOutput": "silent",
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch"
+        },
+        {
+            "taskName": "npm start",
+            "command": "npm",
+            "isShellCommand": true,
+            "args": [
+                "start"
+            ],
+            "echoCommand": true,
+            "showOutput": "silent",
+            "isBackground": true
+        },
+        {
+            "taskName": "npm build",
+            "command": "npm",
+            "isShellCommand": true,
+            "args": [
+                "build"
+            ],
+            "echoCommand": true,
+            "showOutput": "silent",
+            "isBackground": false
+        },
+        {
+            "isTestCommand": true,
+            "taskName": "npm test",
+            "command": "npm",
+            "isShellCommand": true,
+            "args": [
+                "test"
+            ],
+            "echoCommand": true,
+            "showOutput": "always",
+            "isBackground": false
+        }
+    ]
+}

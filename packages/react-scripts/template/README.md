@@ -1,3 +1,68 @@
+# create-react-app-typescript-aaa
+
+Customized react template project generator using the current default settings [at all about apps](https://allaboutapps.at).  
+
+## Typical Dependencies at all about apps
+
+Continue with installing some of those typical libraries depending on your project needs (if not already bundled with this generator).
+
+### General
+* [`react`](https://npmjs.org/package/react) `~15.4.2` + [`@types/react`](https://npmjs.org/package/@types/react) `~15.0.6`
+* [`react-dom`](https://npmjs.org/package/react-dom) `~15.4.2` + [`@types/react-dom`](https://npmjs.org/package/@types/react-dom) `~0.14.22`
+
+### UI
+* [`material-ui`](https://npmjs.org/package/material-ui) `~0.16.7` + [`@types/material-ui`](https://npmjs.org/package/@types/material-ui) `~0.16.49`
+* [`react-tap-event-plugin`](https://npmjs.org/package/react-tap-event-plugin) `~2.0.1` + [`@types/react-tap-event-plugin`](https://npmjs.org/package/@types/react-tap-event-plugin) `~0.0.30`
+  * to make `onTouchTap` click-handler available
+* Form validation
+  * [`formsy-react`](https://npmjs.org/package/formsy-react) `~0.18.1`
+  * [`formsy-material-ui`](https://npmjs.org/package/formsy-material-ui) `~0.5.4`
+
+### State management
+* [`mobx`](https://npmjs.org/package/mobx) `~3.1.0`
+* [`mobx-react`](https://npmjs.org/package/mobx-react) `~4.1.0`
+* Storage
+  * [`mobx-persist`](https://npmjs.org/package/mobx-persist) `~0.2.1`
+  * [`localforage`](https://npmjs.org/package/localforage) `~1.4.3` + [`@types/localforage`](https://npmjs.org/package/@types/localforage) `~0.0.33`
+    * Use as AsyncStorage Adapter for mobx-persist
+
+### Routing
+* [`react-router`](https://npmjs.org/package/react-router) `~3.0.2` + [`@types/react-router`](https://npmjs.org/package/@types/react-router) `~3.0.0`
+  * Attention `v4` will change its API completely (in a saner way)
+  * Depending on the project your can use [`junctions`](https://github.com/jamesknelson/junctions) as an alternative or switch to fully serverside rendering through [`next.js`](https://github.com/zeit/next.js/).
+
+### GraphQL
+* [`apollo-client`](https://npmjs.org/package/apollo-client) `~0.8.2`
+* [`graphql-tag`](https://npmjs.org/package/graphql-tag) `~1.2.4`
+* [`react-apollo`](https://npmjs.org/package/react-apollo) `~0.9.0`
+* DevDependencies
+  * `@playlyfe/gql` `~2.2.1` + [GraphQL for VSCode](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
+  * `apollo-codegen` `~0.10.6`
+  * `jest-transform-graphql` `~1.0.0`
+
+### Styling and Animations
+* [`styled-components`](https://npmjs.org/package/styled-components) `~1.4.3`
+* [`react-swipeable-views`](https://npmjs.org/package/react-swipeable-views) `~0.10.4` + [`@types/react-swipeable-views`](https://npmjs.org/package/@types/react-swipeable-views) `~0.0.27`
+* [`react-addons-css-transition-group`](https://npmjs.org/package/react-addons-css-transition-group) `~15.4.2` + [`@types/react-addons-css-transition-group`](https://npmjs.org/package/@types/react-addons-css-transition-group) `~15.0.1`
+* [`react-animations`](https://npmjs.org/package/react-animations) `~0.1.0`
+* [`react-router-transition`](https://npmjs.org/package/react-router-transition) `~0.0.6`
+
+### i18n
+* [`react-intl`](https://npmjs.org/package/react-intl) `~2.2.3` + [`@types/react-intl`](https://npmjs.org/package/@types/react-intl) `~2.2.2`
+* [`intl`](https://npmjs.org/package/intl) `~1.2.5` 
+  * Polyfill, use `require.ensure`
+
+### Util
+* [`@types/node`](https://npmjs.org/package/@types/node) `~7.0.4`
+* [`lodash`](https://npmjs.org/package/lodash) `~4.17.4` + [`@types/lodash`](https://npmjs.org/package/@types/lodash) `~4.14.52`
+* [`hoist-non-react-statics`](https://npmjs.org/package/hoist-non-react-statics) `~1.2.0`
+  * If you write your own Higher Order Components / experimental component decorators
+* [`@types/webpack-env`](https://npmjs.org/package/@types/webpack-env) `~1.13.0`
+  * To make `require.ensure` overloading available (used for code splitting)
+* [`@types/jest`](https://npmjs.org/package/@types/jest) `~16.0.6
+
+## Original Readme:
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -558,7 +623,7 @@ These variables will act as the defaults if the machine does not explicitly set 
 Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
 
 >Note: If you are defining environment variables for development, your CI and/or hosting platform will most likely need
-these defined as well. Consult their documentation how to do this. For example, see the documentation for [Travis CI](https://docs.travis-ci.com/user/environment-variables/) or [Heroku](https://devcenter.heroku.com/articles/config-vars).
+>these defined as well. Consult their documentation how to do this. For example, see the documentation for [Travis CI](https://docs.travis-ci.com/user/environment-variables/) or [Heroku](https://devcenter.heroku.com/articles/config-vars).
 
 ## Can I Use Decorators?
 
@@ -849,7 +914,7 @@ Popular CI servers already set the environment variable `CI` by default but you 
 #### Travis CI
 
 1. Following the [Travis Getting started](https://docs.travis-ci.com/user/getting-started/) guide for syncing your GitHub repository with Travis.  You may need to initialize some settings manually in your [profile](https://travis-ci.org/profile) page.
-1. Add a `.travis.yml` file to your git repository.
+2. Add a `.travis.yml` file to your git repository.
 ```
 language: node_js
 node_js:
@@ -863,7 +928,7 @@ script:
   - npm run build
 ```
 1. Trigger your first build with a git push.
-1. [Customize your Travis CI Build](https://docs.travis-ci.com/user/customizing-the-build/) if needed.
+2. [Customize your Travis CI Build](https://docs.travis-ci.com/user/customizing-the-build/) if needed.
 
 ### On your own environment
 ##### Windows (cmd.exe)
