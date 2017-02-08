@@ -1,6 +1,6 @@
 # `aaa-react-scripts-ts` [![npm version](https://badge.fury.io/js/aaa-react-scripts-ts.svg)](https://badge.fury.io/js/aaa-react-scripts-ts)
 
-This project is a fork of [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript) tailored to the opionated needs of [all about apps](https://allaboutapps.at).
+This project is a fork of [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript) further tailored to the opinionated needs of [@majodev](https://github.com/majodev) and [all about apps](https://allaboutapps.at).
 
 Create React apps (with Typescript) with no build configuration.
 

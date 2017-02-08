@@ -1,1 +1,1 @@
-// ... our configuration variables (potentially from the env)
+// ... our configuration variables (potentially from process.env.REACT_APP_*)
