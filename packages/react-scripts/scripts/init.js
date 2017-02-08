@@ -76,17 +76,23 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
   }
 
   args.push(
-    'react',
-    'react-dom',
+    '@types/isomorphic-fetch',
+    '@types/jest',
+    '@types/material-ui',
     '@types/node',
     '@types/react',
+    '@types/react-addons-css-transition-group',
     '@types/react-dom',
-    '@types/jest',
     '@types/webpack-env',
     'intl',
+    'material-ui',
+    'react',
+    'react-addons-css-transition-group',
+    'react-animations',
+    'react-dom',
     'react-intl',
+    'react-tap-event-plugin',
     'styled-components',
-    'react-tap-event-plugin'
   );
 
   console.log('Installing react and react-dom using ' + command + '...');

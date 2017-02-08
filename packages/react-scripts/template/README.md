@@ -11,8 +11,8 @@ Continue with installing some of those typical libraries depending on your proje
 * `✔` [`react-dom`](https://npmjs.org/package/react-dom) `~15.4.2` + [`@types/react-dom`](https://npmjs.org/package/@types/react-dom) `~0.14.22`
 
 ### UI
-* [`material-ui`](https://npmjs.org/package/material-ui) `~0.16.7` + [`@types/material-ui`](https://npmjs.org/package/@types/material-ui) `~0.16.49`
-* `✔` [`react-tap-event-plugin`](https://npmjs.org/package/react-tap-event-plugin) `~2.0.1` + [`@types/react-tap-event-plugin`](https://npmjs.org/package/@types/react-tap-event-plugin) `~0.0.30`
+* `✔` [`material-ui`](https://npmjs.org/package/material-ui) `~0.16.7` + `✔` [`@types/material-ui`](https://npmjs.org/package/@types/material-ui) `~0.16.49`
+* `✔` [`react-tap-event-plugin`](https://npmjs.org/package/react-tap-event-plugin) `~2.0.1` + `✔` [`@types/react-tap-event-plugin`](https://npmjs.org/package/@types/react-tap-event-plugin) `~0.0.30`
   * to make `onTouchTap` click-handler available
 * Form validation
   * [`formsy-react`](https://npmjs.org/package/formsy-react) `~0.18.1`
@@ -43,8 +43,8 @@ Continue with installing some of those typical libraries depending on your proje
 ### Styling and Animations
 * `✔` [`styled-components`](https://npmjs.org/package/styled-components) `~1.4.3`
 * [`react-swipeable-views`](https://npmjs.org/package/react-swipeable-views) `~0.10.4` + [`@types/react-swipeable-views`](https://npmjs.org/package/@types/react-swipeable-views) `~0.0.27`
-* [`react-addons-css-transition-group`](https://npmjs.org/package/react-addons-css-transition-group) `~15.4.2` + [`@types/react-addons-css-transition-group`](https://npmjs.org/package/@types/react-addons-css-transition-group) `~15.0.1`
-* [`react-animations`](https://npmjs.org/package/react-animations) `~0.1.0`
+* `✔` [`react-addons-css-transition-group`](https://npmjs.org/package/react-addons-css-transition-group) `~15.4.2` + `✔` [`@types/react-addons-css-transition-group`](https://npmjs.org/package/@types/react-addons-css-transition-group) `~15.0.1`
+* `✔` [`react-animations`](https://npmjs.org/package/react-animations) `~0.1.0`
 * [`react-router-transition`](https://npmjs.org/package/react-router-transition) `~0.0.6`
 
 ### i18n
