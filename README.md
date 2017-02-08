@@ -1,4 +1,6 @@
-# `react-scripts-ts` [![npm version](https://badge.fury.io/js/react-scripts-ts.svg)](https://badge.fury.io/js/react-scripts-ts)
+# `aaa-react-scripts-ts` [![npm version](https://badge.fury.io/js/aaa-react-scripts-ts.svg)](https://badge.fury.io/js/aaa-react-scripts-ts)
+
+This project is a fork of [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript) tailored to the opionated needs of [all about apps](https://allaboutapps.at).
 
 Create React apps (with Typescript) with no build configuration.
 
@@ -9,7 +11,7 @@ _Do you know react and want to try out typescript? Or do you know typescript and
 ```sh
 npm install -g create-react-app
 
-create-react-app my-app --scripts-version=react-scripts-ts
+create-react-app my-app --scripts-version=aaa-react-scripts-ts
 cd my-app/
 npm start
 ```

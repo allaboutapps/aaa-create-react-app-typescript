@@ -4,6 +4,7 @@
     "recommendations": [
         // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
         "eg2.tslint",
-        "msjsdiag.debugger-for-chrome"
+        "msjsdiag.debugger-for-chrome",
+        "jpoissonnier.vscode-styled-components"
     ]
 }

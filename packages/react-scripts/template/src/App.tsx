@@ -1,20 +1,21 @@
 import * as React from "react";
-import "./App.css";
+import styled, { keyframes } from "styled-components";
+import * as injectTapEventPlugin from "react-tap-event-plugin";
+import { IntlProvider } from "react-intl";
 
-const logo = require("./logo.svg");
+import Main from "./components/Main";
+import baseLocale from "./i18n/en";
+
+// Needed for onTouchTap click handlers 
+// see http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 class App extends React.Component<null, null> {
     render() {
         return (
-            <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h2>Welcome to React</h2>
-                </div>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-            </div>
+            <IntlProvider locale="en" messages={baseLocale}>
+                <Main />
+            </IntlProvider>
         );
     }
 }

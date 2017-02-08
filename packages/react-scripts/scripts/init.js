@@ -74,7 +74,20 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
       verbose && '--verbose'
     ].filter(function(e) { return e; });
   }
-  args.push('react', 'react-dom', '@types/node', '@types/react', '@types/react-dom', '@types/jest','@types/webpack-env');
+
+  args.push(
+    'react',
+    'react-dom',
+    '@types/node',
+    '@types/react',
+    '@types/react-dom',
+    '@types/jest',
+    '@types/webpack-env',
+    'intl',
+    'react-intl',
+    'styled-components',
+    'react-tap-event-plugin'
+  );
 
   console.log('Installing react and react-dom using ' + command + '...');
   console.log();

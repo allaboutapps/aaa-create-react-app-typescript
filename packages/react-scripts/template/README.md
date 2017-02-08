@@ -1,18 +1,18 @@
-# create-react-app-typescript-aaa
+# aaa-create-react-app-typescript
 
 Customized react template project generator using the current default settings [at all about apps](https://allaboutapps.at).  
 
 ## Typical Dependencies at all about apps
 
-Continue with installing some of those typical libraries depending on your project needs (if not already bundled with this generator).
+Continue with installing some of those typical libraries depending on your project needs (some where already installed automatically and are thus flagged with `✔`).
 
 ### General
-* [`react`](https://npmjs.org/package/react) `~15.4.2` + [`@types/react`](https://npmjs.org/package/@types/react) `~15.0.6`
-* [`react-dom`](https://npmjs.org/package/react-dom) `~15.4.2` + [`@types/react-dom`](https://npmjs.org/package/@types/react-dom) `~0.14.22`
+* `✔` [`react`](https://npmjs.org/package/react) `~15.4.2` + [`@types/react`](https://npmjs.org/package/@types/react) `~15.0.6`
+* `✔` [`react-dom`](https://npmjs.org/package/react-dom) `~15.4.2` + [`@types/react-dom`](https://npmjs.org/package/@types/react-dom) `~0.14.22`
 
 ### UI
 * [`material-ui`](https://npmjs.org/package/material-ui) `~0.16.7` + [`@types/material-ui`](https://npmjs.org/package/@types/material-ui) `~0.16.49`
-* [`react-tap-event-plugin`](https://npmjs.org/package/react-tap-event-plugin) `~2.0.1` + [`@types/react-tap-event-plugin`](https://npmjs.org/package/@types/react-tap-event-plugin) `~0.0.30`
+* `✔` [`react-tap-event-plugin`](https://npmjs.org/package/react-tap-event-plugin) `~2.0.1` + [`@types/react-tap-event-plugin`](https://npmjs.org/package/@types/react-tap-event-plugin) `~0.0.30`
   * to make `onTouchTap` click-handler available
 * Form validation
   * [`formsy-react`](https://npmjs.org/package/formsy-react) `~0.18.1`
@@ -41,25 +41,26 @@ Continue with installing some of those typical libraries depending on your proje
   * `jest-transform-graphql` `~1.0.0`
 
 ### Styling and Animations
-* [`styled-components`](https://npmjs.org/package/styled-components) `~1.4.3`
+* `✔` [`styled-components`](https://npmjs.org/package/styled-components) `~1.4.3`
 * [`react-swipeable-views`](https://npmjs.org/package/react-swipeable-views) `~0.10.4` + [`@types/react-swipeable-views`](https://npmjs.org/package/@types/react-swipeable-views) `~0.0.27`
 * [`react-addons-css-transition-group`](https://npmjs.org/package/react-addons-css-transition-group) `~15.4.2` + [`@types/react-addons-css-transition-group`](https://npmjs.org/package/@types/react-addons-css-transition-group) `~15.0.1`
 * [`react-animations`](https://npmjs.org/package/react-animations) `~0.1.0`
 * [`react-router-transition`](https://npmjs.org/package/react-router-transition) `~0.0.6`
 
 ### i18n
-* [`react-intl`](https://npmjs.org/package/react-intl) `~2.2.3` + [`@types/react-intl`](https://npmjs.org/package/@types/react-intl) `~2.2.2`
-* [`intl`](https://npmjs.org/package/intl) `~1.2.5` 
+* `✔` [`react-intl`](https://npmjs.org/package/react-intl) `~2.2.3`
+  * A custom `@types/react-intl` is supplied in generated projects that introduces the generic IDS for certain methods to check used i18n keys during compile time
+* `✔` [`intl`](https://npmjs.org/package/intl) `~1.2.5` 
   * Polyfill, use `require.ensure`
 
 ### Util
-* [`@types/node`](https://npmjs.org/package/@types/node) `~7.0.4`
+* `✔` [`@types/node`](https://npmjs.org/package/@types/node) `~7.0.4`
 * [`lodash`](https://npmjs.org/package/lodash) `~4.17.4` + [`@types/lodash`](https://npmjs.org/package/@types/lodash) `~4.14.52`
 * [`hoist-non-react-statics`](https://npmjs.org/package/hoist-non-react-statics) `~1.2.0`
   * If you write your own Higher Order Components / experimental component decorators
-* [`@types/webpack-env`](https://npmjs.org/package/@types/webpack-env) `~1.13.0`
+* `✔` [`@types/webpack-env`](https://npmjs.org/package/@types/webpack-env) `~1.13.0`
   * To make `require.ensure` overloading available (used for code splitting)
-* [`@types/jest`](https://npmjs.org/package/@types/jest) `~16.0.6
+* `✔` [`@types/jest`](https://npmjs.org/package/@types/jest) `~16.0.6
 
 ## Original Readme:
 
