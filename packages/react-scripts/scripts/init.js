@@ -92,7 +92,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
     'react-dom',
     'react-intl',
     'react-tap-event-plugin',
-    'styled-components',
+    'styled-components'
   );
 
   console.log('Installing react and react-dom using ' + command + '...');
