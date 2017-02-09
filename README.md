@@ -4,6 +4,8 @@ This project is a fork of [create-react-app-typescript](https://github.com/wmonk
 
 See the updated [README](packages/react-scripts/template/README.md) for more information.
 
+See [Forking react-scripts](https://github.com/facebookincubator/create-react-app/issues/682) for information of the forking process.
+
 Create React apps (with Typescript) with no build configuration.
 
 _Do you know react and want to try out typescript? Or do you know typescript and want to try out react?_ Get all the benefits from `create-react-app` but you use typescript! 🚀
