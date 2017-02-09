@@ -95,7 +95,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
     'styled-components'
   );
 
-  console.log('Installing react and react-dom using ' + command + '...');
+  console.log('Installing dependencies using ' + command + '...');
   console.log();
 
   var proc = spawn(command, args, {stdio: 'inherit'});

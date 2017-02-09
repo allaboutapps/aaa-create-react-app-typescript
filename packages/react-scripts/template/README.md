@@ -33,12 +33,12 @@ Continue with installing some of those typical libraries depending on your proje
 
 ### GraphQL
 * [`apollo-client`](https://npmjs.org/package/apollo-client) `~0.8.2`
-* [`graphql-tag`](https://npmjs.org/package/graphql-tag) `~1.2.4`
+* [`graphql-tag`](https://npmjs.org/package/graphql-tag) `~1.2.4` (already used as devDependency in the webpack build chain, install you own version too if needed!)
 * [`react-apollo`](https://npmjs.org/package/react-apollo) `~0.9.0`
 * DevDependencies
   * `@playlyfe/gql` `~2.2.1` + [GraphQL for VSCode](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
   * `apollo-codegen` `~0.10.6`
-  * `jest-transform-graphql` `~1.0.0`
+  * `✔` `jest-transform-graphql` `~1.0.0` (already installed in test chain)
 
 ### Styling and Animations
 * `✔` [`styled-components`](https://npmjs.org/package/styled-components) `~1.4.3`
