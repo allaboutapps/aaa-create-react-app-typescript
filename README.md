@@ -2,7 +2,7 @@
 
 This project is a fork of [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript) further tailored to the opinionated needs of [@majodev](https://github.com/majodev) and [all about apps](https://allaboutapps.at).
 
-See the updated [README](packages/react-scripts/README.md) for more information.
+See the updated [README](packages/react-scripts/template/README.md) for more information.
 
 Create React apps (with Typescript) with no build configuration.
 
