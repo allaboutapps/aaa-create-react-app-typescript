@@ -98,7 +98,7 @@ module.exports = {
   // directory of `react-scripts` itself rather than the project directory.
   resolveLoader: {
     root: paths.ownNodeModules,
-    moduleTemplates: ['*-loader']
+    moduleTemplates: ['*-loader', '*']
   },
   // @remove-on-eject-end
   module: {
@@ -180,7 +180,7 @@ module.exports = {
     ]
   },
   // We use PostCSS for autoprefixing only.
-  postcss: function() {
+  postcss: function () {
     return [
       autoprefixer({
         browsers: [

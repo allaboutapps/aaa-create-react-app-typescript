@@ -20,6 +20,9 @@ cd my-app/
 npm start
 ```
 
+## Original Readme:
+From [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript).
+
 ## Features
 
 ### Code highlighting on error

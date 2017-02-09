@@ -139,8 +139,7 @@ module.exports = {
           /\.(ts|tsx)$/,
           /\.css$/,
           /\.json$/,
-          /\.svg$/,
-          /\.(graphql|gql)$/
+          /\.svg$/
         ],
         loader: 'url',
         query: {
@@ -184,17 +183,11 @@ module.exports = {
         query: {
           name: 'static/media/[name].[hash:8].[ext]'
         }
-      },
-      // graphql-tag loader (https://github.com/apollostack/graphql-tag)
-      {
-        test: /\.(graphql|gql)$/,
-        exclude: /node_modules/,
-        loader: 'graphql-tag/loader'
-      },
+      }
     ]
   },
   // We use PostCSS for autoprefixing only.
-  postcss: function() {
+  postcss: function () {
     return [
       autoprefixer({
         browsers: [
