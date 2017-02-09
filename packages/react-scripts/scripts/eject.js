@@ -109,10 +109,10 @@ prompt(
   delete appPackage.scripts['eject'];
   Object.keys(appPackage.scripts).forEach(function (key) {
     appPackage.scripts[key] = appPackage.scripts[key]
-      .replace(/react-scripts-ts (\w+)/g, 'node scripts/$1.js');
+      .replace(/aaa-react-scripts-ts (\w+)/g, 'node scripts/$1.js');
     console.log(
       '  Replacing ' +
-      cyan('"react-scripts-ts ' + key + '"') +
+      cyan('"aaa-react-scripts-ts ' + key + '"') +
       ' with ' +
       cyan('"node scripts/' + key + '.js"')
     );

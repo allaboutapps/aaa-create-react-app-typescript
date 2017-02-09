@@ -19,7 +19,7 @@
     "utils"
   ],
   "bin": {
-    "react-scripts-ts": "./bin/react-scripts-ts.js"
+    "aaa-react-scripts-ts": "./bin/aaa-react-scripts-ts.js"
   },
   "dependencies": {
     "autoprefixer": "6.5.1",
