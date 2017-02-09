@@ -2,13 +2,13 @@
   "name": "aaa-react-scripts-ts",
   "version": "1.0.0",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "majodev/aaa-create-react-app-typescript",
+  "repository": "majodev/create-react-app-typescript",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=4"
   },
   "bugs": {
-    "url": "https://github.com/majodev/aaa-create-react-app-typescript/issues"
+    "url": "https://github.com/majodev/create-react-app-typescript/issues"
   },
   "files": [
     ".babelrc",

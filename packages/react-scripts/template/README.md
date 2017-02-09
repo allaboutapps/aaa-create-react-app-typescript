@@ -1,4 +1,4 @@
-# aaa-create-react-app-typescript
+# aaa-react-scripts-ts
 
 Customized react template project generator using the current default settings [at all about apps](https://allaboutapps.at).  
 
