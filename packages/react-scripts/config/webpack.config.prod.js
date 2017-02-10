@@ -106,7 +106,7 @@ module.exports = {
   // directory of `react-scripts` itself rather than the project directory.
   resolveLoader: {
     root: paths.ownNodeModules,
-    moduleTemplates: ['*-loader']
+    moduleTemplates: ['*-loader', '*']
   },
   // @remove-on-eject-end
   module: {
@@ -139,7 +139,8 @@ module.exports = {
           /\.(ts|tsx)$/,
           /\.css$/,
           /\.json$/,
-          /\.svg$/
+          /\.svg$/,
+          /\.(graphql|gql)$/
         ],
         loader: 'url',
         query: {
@@ -183,7 +184,13 @@ module.exports = {
         query: {
           name: 'static/media/[name].[hash:8].[ext]'
         }
-      }
+      },
+      // graphql-tag loader (https://github.com/apollostack/graphql-tag)
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader'
+      },
     ]
   },
   // We use PostCSS for autoprefixing only.
