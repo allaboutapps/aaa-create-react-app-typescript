@@ -38,18 +38,6 @@
             "echoCommand": true,
             "showOutput": "silent",
             "isBackground": false
-        },
-        {
-            "isTestCommand": true,
-            "taskName": "npm test",
-            "command": "npm",
-            "isShellCommand": true,
-            "args": [
-                "test"
-            ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "isBackground": false
         }
     ]
 }

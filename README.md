@@ -2,7 +2,11 @@
 
 This project is a fork of [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript) further tailored to the opinionated needs of [@majodev](https://github.com/majodev) and [all about apps](https://allaboutapps.at).
 
-See the updated [README](packages/react-scripts/template/README.md) for more information.
+## Features
+* Fully configured [Visual Studio code](https://code.visualstudio.com/) environment (debugging, recommended extensions, tasks).   
+* Allows to extend webpack configuration through a `webpack.js` inside the project without the need to eject.   
+
+See the updated [README](packages/react-scripts/template/README.md) for more information on the included dependencies.
 
 See [Forking react-scripts](https://github.com/facebookincubator/create-react-app/issues/682) for information of the forking process.
 
