@@ -6,7 +6,7 @@
         {
             "isBuildCommand": true,
             "taskName": "tsc",
-            "command": "./node_modules/.bin/tsc", // IMPORTANT: use the version in the workspace to trigger builds!
+            "command": "${workspaceRoot}/node_modules/.bin/tsc", // IMPORTANT: use the version in the workspace to trigger builds!
             "isShellCommand": true,
             "args": [
                 "-w",
