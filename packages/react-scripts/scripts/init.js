@@ -22,6 +22,9 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   appPackage.dependencies = appPackage.dependencies || {};
   appPackage.devDependencies = appPackage.devDependencies || {};
 
+  // also directly install typescript, so it can be pinned by a shrinkwrap (to make it independent from aaa-react-scripts-ts)
+  appPackage.devDependencies.typescript = "latest";
+
   // Setup the script rules
   appPackage.scripts = {
     'start': 'aaa-react-scripts-ts start',
