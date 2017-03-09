@@ -101,7 +101,8 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     'react-dom',
     'react-intl',
     'react-tap-event-plugin',
-    'styled-components'
+    'styled-components',
+    'hoist-non-react-statics'
   );
 
   // Install additional template dependencies, if present

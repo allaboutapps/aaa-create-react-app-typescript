@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as hoistNonReactStatic from "hoist-non-react-statics";
 import * as RI from "react-intl";
 import { IAvailableI18nIds } from "./en";
 
@@ -10,8 +11,17 @@ export const id = (i18nId: IDS) => i18nId;
 // TODO: can go away with TypeScript 2.2 (global constructor type | primitive object type)
 type C<T> = new () => T;
 
+// proxy injectIntl through hoist-non-react-statics
+// react-intl is insane and not complying to conventions in the ecosystem, thus we handle this here directly.
+// see https://github.com/yahoo/react-intl/issues/196
+// see https://github.com/yahoo/react-intl/pull/433
+// see https://github.com/mridgway/hoist-non-react-statics
+export function injectIntl(WrappedComponent) {
+    const InjectIntl = RI.injectIntl(WrappedComponent);
+    return hoistNonReactStatic(InjectIntl, WrappedComponent);
+}
+
 // reexpose RI utils with limited available id settings
-export const injectIntl = RI.injectIntl;
 export const FormattedHTMLMessage: C<RI.FormattedHTMLMessage<IDS>> = RI.FormattedHTMLMessage;
 export const FormattedMessage: C<RI.FormattedMessage<IDS>> = RI.FormattedMessage;
 export const FormattedPlural: C<RI.FormattedPlural<IDS>> = RI.FormattedPlural;
