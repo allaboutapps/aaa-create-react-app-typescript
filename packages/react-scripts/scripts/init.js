@@ -14,7 +14,7 @@ var path = require('path');
 var spawn = require('cross-spawn');
 var chalk = require('chalk');
 
-module.exports = function(appPath, appName, verbose, originalDirectory, template) {
+module.exports = function (appPath, appName, verbose, originalDirectory, template) {
   var ownPackageName = require(path.join(__dirname, '..', 'package.json')).name;
   var ownPath = path.join(appPath, 'node_modules', ownPackageName);
   var appPackage = require(path.join(appPath, 'package.json'));
@@ -24,8 +24,34 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   appPackage.dependencies = appPackage.dependencies || {};
   appPackage.devDependencies = appPackage.devDependencies || {};
 
-  // also directly install typescript, so it can be pinned by a shrinkwrap (to make it independent from aaa-react-scripts-ts)
-  appPackage.devDependencies.typescript = "latest";
+  // Define custom dependencies required to be installed 
+  appPackage.dependencies = Object.assign(appPackage.dependencies, {
+    "@types/isomorphic-fetch": "0.0.33",
+    "@types/jest": "^18.1.1",
+    "@types/material-ui": "^0.16.51",
+    "@types/node": "^7.0.5",
+    "@types/react": "^15.0.13",
+    "@types/react": "^15.0.13",
+    "@types/react-addons-css-transition-group": "^15.0.1",
+    "@types/react-dom": "^0.14.23",
+    "@types/webpack-env": "^1.13.0",
+    "hoist-non-react-statics": "^1.2.0",
+    "intl": "^1.2.5",
+    "material-ui": "^0.16.7",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-animations": "^0.1.0",
+    "react-dom": "^15.4.2",
+    "react-intl": "^2.2.3",
+    "react-tap-event-plugin": "^2.0.1",
+    "styled-components": "^1.4.3"
+  });
+
+  // Define custom dev-dependencies required to be installed
+  // also directly install typescript, so it can be pinned by a shrinkwrap (to make it independent from aaa- react - scripts - ts)
+  appPackage.devDependencies = Object.assign(appPackage.devDependencies, {
+    "typescript": "^2.2.1"
+  });
 
   // Setup the script rules
   appPackage.scripts = {
@@ -81,29 +107,13 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
       'install',
       '--save',
       verbose && '--verbose'
-    ].filter(function(e) { return e; });
+    ].filter(function (e) { return e; });
   }
 
-  args.push(
-    '@types/isomorphic-fetch',
-    '@types/jest',
-    '@types/material-ui',
-    '@types/node',
-    '@types/react',
-    '@types/react-addons-css-transition-group',
-    '@types/react-dom',
-    '@types/webpack-env',
-    'intl',
-    'material-ui',
-    'react',
-    'react-addons-css-transition-group',
-    'react-animations',
-    'react-dom',
-    'react-intl',
-    'react-tap-event-plugin',
-    'styled-components',
-    'hoist-non-react-statics'
-  );
+  // fallback previous version of create-react-app
+  Object.keys(appPackage.dependencies).map((dep) => {
+    args.push(dep + '@' + appPackage.dependencies[dep]);
+  });
 
   // Install additional template dependencies, if present
   var templateDependenciesPath = path.join(appPath, '.template.dependencies.json');
@@ -115,18 +125,14 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     fs.unlinkSync(templateDependenciesPath);
   }
 
-  // Install react and react-dom for backward compatibility with old CRA cli
-  // which doesn't install react and react-dom along with react-scripts
-  // or template is presetend (via --internal-testing-template)
-  if (!isReactInstalled(appPackage) || template) {
-    console.log('Installing react and react-dom using ' + command + '...');
-    console.log();
+  // Custom handling - we always need to retrigger the installing process as we need several additional dependencies...
+  console.log('Installing ' + Object.keys(appPackage.dependencies).join(", ") + ' using ' + command + '...');
+  console.log();
 
-    var proc = spawn.sync(command, args, {stdio: 'inherit'});
-    if (proc.status !== 0) {
-      console.error('`' + command + ' ' + args.join(' ') + '` failed');
-      return;
-    }
+  var proc = spawn.sync(command, args, { stdio: 'inherit' });
+  if (proc.status !== 0) {
+    console.error('`' + command + ' ' + args.join(' ') + '` failed');
+    return;
   }
 
   // Display the most elegant way to cd.
@@ -134,7 +140,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   // backward compatibility with old global-cli's.
   var cdpath;
   if (originalDirectory &&
-      path.join(originalDirectory, appName) === appPath) {
+    path.join(originalDirectory, appName) === appPath) {
     cdpath = appName;
   } else {
     cdpath = appPath;
@@ -172,11 +178,3 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   console.log('Happy hacking!');
 };
 
-function isReactInstalled(appPackage) {
-  var dependencies = appPackage.dependencies || {};
-
-  return (
-    typeof dependencies.react !== 'undefined' &&
-    typeof dependencies['react-dom'] !== 'undefined'
-  )
-}
