@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import * as mui from "material-ui";
 
 import * as i18n from "../i18n/util";
 import * as animations from "./util/animations";

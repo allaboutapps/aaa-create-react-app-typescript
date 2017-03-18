@@ -1,11 +1,9 @@
 import * as React from "react";
-import styled from "styled-components";
 import * as mui from "material-ui";
 
 import * as primitives from "../util/primitives";
 import * as animations from "../util/animations";
 import * as formatters from "../util/formatters";
-import * as i18n from "../../i18n/util";
 import FullScreenProgress from "./FullScreenProgress";
 
 interface IJSONResponse {
@@ -63,14 +61,14 @@ export default class Component extends React.Component<IProps, IState> {
             <div>
 
                 <FullScreenProgress show={this.state.loading} />
-                
+
                 <mui.FlatButton
                     icon={<primitives.IconDone />}
-                    onTouchTap={this.fetchRemoteTime} 
+                    onTouchTap={this.fetchRemoteTime}
                 />
                 <mui.FlatButton
                     icon={<primitives.IconRestore />}
-                    onTouchTap={this.reset} 
+                    onTouchTap={this.reset}
                 />
 
                 <animations.HeadShakeAnimatable durationMs={1000} innerRef={(c) => this.headShakeAnimation = c}>
@@ -78,7 +76,7 @@ export default class Component extends React.Component<IProps, IState> {
                     {this.state.data ? (
                         <p><small><formatters.IsoDate date={new Date(this.state.data.milliseconds_since_epoch).toISOString()} /></small></p>
                     ) : null}
-                
+
                 </animations.HeadShakeAnimatable>
 
             </div>

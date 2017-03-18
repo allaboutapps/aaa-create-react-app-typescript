@@ -18,7 +18,7 @@
     "noImplicitAny": false,
     "strictNullChecks": false, // disabled as external type definitions must be compatible with this (when using ts-loader) - see https://github.com/TypeStrong/ts-loader/issues/442
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noUnusedParameters": false,
     "experimentalDecorators": true
   },

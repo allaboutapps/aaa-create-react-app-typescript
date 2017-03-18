@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import styled, { keyframes } from "styled-components";
 import headShakeKeyframeObject from "react-animations/lib/headShake";
 import fadeInKeyframeObject from "react-animations/lib/fadeIn";

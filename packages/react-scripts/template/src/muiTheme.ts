@@ -1,5 +1,5 @@
 import getMuiTheme from "material-ui/styles/getMuiTheme";
-import * as muiColors from "material-ui/styles/colors";
+// import * as muiColors from "material-ui/styles/colors";
 
 const muiTheme = getMuiTheme({
     palette: {

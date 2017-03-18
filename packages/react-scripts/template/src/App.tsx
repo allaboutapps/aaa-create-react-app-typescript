@@ -1,5 +1,4 @@
 import * as React from "react";
-import styled, { keyframes } from "styled-components";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as injectTapEventPlugin from "react-tap-event-plugin";
 import { IntlProvider } from "react-intl";

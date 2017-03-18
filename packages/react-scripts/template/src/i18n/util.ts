@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as hoistNonReactStatic from "hoist-non-react-statics";
 import * as RI from "react-intl";
 import { IAvailableI18nIds } from "./en";
