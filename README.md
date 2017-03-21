@@ -169,6 +169,13 @@ When you run `npm run build` the terminal will output the error, including the h
 
 ## Changelog
 
+### 1.1.7
+* Merge facebookincubator/create-react-app@0.9.5 into react-scripts-ts
+* Merge facebookincubator/create-react-app@0.9.4 into react-scripts-ts
+* Merge facebookincubator/create-react-app@0.9.3 into react-scripts-ts
+* Merge facebookincubator/create-react-app@0.9.2 into react-scripts-ts
+* Merge facebookincubator/create-react-app@0.9.1 into react-scripts-ts
+
 ### 1.1.6
 * Merge facebookincubator/create-react-app@0.9.0 into react-scripts-ts
 
@@ -179,11 +186,6 @@ When you run `npm run build` the terminal will output the error, including the h
 * Print file names when running `npm run build`
 * Add support for `setupTest.ts`
 * Highlight source code when erroring in `npm run build`
-* [insin/nwb](https://github.com/insin/nwb)
-* [mozilla-neutrino/neutrino-dev](https://github.com/mozilla-neutrino/neutrino-dev)
-* [NYTimes/kyt](https://github.com/NYTimes/kyt)
-* [zeit/next.js](https://github.com/zeit/next.js)
-* [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby)
 
 ### 1.0.4
 * Change mentions of `eslint` to `tslint`
