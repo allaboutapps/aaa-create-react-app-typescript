@@ -29,4 +29,15 @@ export const FormattedDate = RI.FormattedDate;
 export const FormattedRelative = RI.FormattedRelative;
 export const FormattedTime = RI.FormattedTime;
 
+export type InjectedIntl = RI.InjectedIntl<IDS>;
 export type InjectedIntlProps = RI.InjectedIntlProps<IDS>;
+
+/** * Given an InjectedIntl object return a function that can be used for getting
+ * internationalized string constants with less typing.
+ *
+ *  Usage: __ = bindStr(this.props.intl);
+ *  console.log(__("string-key"));
+ */
+export function bindStr(intl: RI.InjectedIntl<IDS>) {
+    return (stringId: IDS) => intl.formatMessage({ id: stringId });
+}
