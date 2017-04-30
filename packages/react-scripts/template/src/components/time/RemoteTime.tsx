@@ -15,14 +15,14 @@ interface IJSONResponse {
 interface IProps { }
 interface IState {
     loading: boolean;
-    data: IJSONResponse;
+    data: null | IJSONResponse;
 }
 
 export default class Component extends React.Component<IProps, IState> {
 
     headShakeAnimation: animations.Animatable;
 
-    constructor(props) {
+    constructor(props: IProps) {
         super(props);
 
         this.state = {

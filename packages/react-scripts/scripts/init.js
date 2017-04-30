@@ -26,31 +26,31 @@ module.exports = function (appPath, appName, verbose, originalDirectory, templat
 
   // Define custom dependencies required to be installed 
   appPackage.dependencies = Object.assign(appPackage.dependencies, {
-    "@types/isomorphic-fetch": "0.0.33",
-    "@types/jest": "^18.1.1",
-    "@types/material-ui": "^0.16.51",
-    "@types/node": "^7.0.5",
-    "@types/react": "^15.0.13",
-    "@types/react": "^15.0.13",
-    "@types/react-addons-css-transition-group": "^15.0.1",
-    "@types/react-dom": "^0.14.23",
+    "@types/isomorphic-fetch": "^0.0.34",
+    "@types/jest": "^19.2.2",
+    "@types/material-ui": "^0.17.4",
+    "@types/node": "^7.0.14",
+    "@types/react": "^15.0.23",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-tap-event-plugin": "^0.0.30",
+    "@types/react-transition-group": "^1.1.0",
     "@types/webpack-env": "^1.13.0",
     "hoist-non-react-statics": "^1.2.0",
     "intl": "^1.2.5",
-    "material-ui": "^0.16.7",
-    "react": "^15.4.2",
-    "react-addons-css-transition-group": "^15.4.2",
+    "material-ui": "^0.17.4",
+    "react": "^15.5.4",
     "react-animations": "^0.1.0",
-    "react-dom": "^15.4.2",
+    "react-dom": "^15.5.4",
     "react-intl": "^2.2.3",
     "react-tap-event-plugin": "^2.0.1",
-    "styled-components": "^1.4.3"
+    "react-transition-group": "^1.1.2",
+    "styled-components": "^1.4.5"
   });
 
   // Define custom dev-dependencies required to be installed
   // also directly install typescript, so it can be pinned by a shrinkwrap (to make it independent from aaa- react - scripts - ts)
   appPackage.devDependencies = Object.assign(appPackage.devDependencies, {
-    "typescript": "^2.2.1"
+    "typescript": "^2.3.2"
   });
 
   // Setup the script rules

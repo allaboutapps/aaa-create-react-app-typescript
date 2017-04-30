@@ -19,9 +19,9 @@ export class Animatable extends React.Component<IAnimatableProps & {
         animateOnMount: false
     };
 
-    animationTimeout = null;
+    animationTimeout: NodeJS.Timer | null = null;
 
-    constructor(props) {
+    constructor(props: IAnimatableProps) {
         super(props);
 
         this.state = {
@@ -55,7 +55,9 @@ export class Animatable extends React.Component<IAnimatableProps & {
     }
 
     componentWillUnmount() {
-        clearTimeout(this.animationTimeout);
+        if (this.animationTimeout) {
+            clearTimeout(this.animationTimeout);
+        }
     }
 
     render() {
@@ -70,7 +72,7 @@ export class Animatable extends React.Component<IAnimatableProps & {
 
 export default function createAnimatable(keyframes: string): React.ComponentClass<IAnimatableProps & { innerRef?: (c: Animatable) => void }> {
     return styled(Animatable) `
-        animation: ${keyframes} ${props => props.durationMs}ms ${props => props.timingFn};
+        animation: ${keyframes} ${props => props.durationMs}ms ${props => props.timingFn ? props.timingFn : ""};
         animation-fill-mode: both;
     `;
 } 

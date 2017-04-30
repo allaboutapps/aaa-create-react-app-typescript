@@ -1,4 +1,4 @@
-import * as hoistNonReactStatic from "hoist-non-react-statics";
+import hoistNonReactStatic from "hoist-non-react-statics";
 import * as RI from "react-intl";
 import { IAvailableI18nIds } from "./en";
 
@@ -15,7 +15,7 @@ type C<T> = new () => T;
 // see https://github.com/yahoo/react-intl/issues/196
 // see https://github.com/yahoo/react-intl/pull/433
 // see https://github.com/mridgway/hoist-non-react-statics
-export function injectIntl(WrappedComponent) {
+export function injectIntl(WrappedComponent: any) {
     const InjectIntl = RI.injectIntl(WrappedComponent);
     return hoistNonReactStatic(InjectIntl, WrappedComponent);
 }
