@@ -9,7 +9,6 @@ type IProps = Partial<CSSTransitionGroupProps> & {
     timingFnEnter?: string; // defaults to linear -- e.g. ease-in
     // linear|ease|ease-in|ease-out|ease-in-out|step-start|step-end|steps(int,start|end)|cubic-bezier(n,n,n,n)|initial|inherit;
     timingFnLeave?: string; // defaults to linear -- e.g. cubic-bezier(0.95, 0.05, 0.795, 0.035)
-    children?: React.ReactChildren;
 };
 
 export default function createAnimatableTransitionGroup(enterKeyframes: string, leaveKeyframes: string) {
