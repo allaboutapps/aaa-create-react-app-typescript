@@ -39,11 +39,12 @@ export class Animatable extends React.Component<IAnimatableProps & {
             isExecuting: true
         });
 
+
         this.animationTimeout = setTimeout(() => {
             this.setState({
                 isExecuting: false
             });
-        }, this.props.durationMs);
+        }, this.props.durationMs) as any; // fixes weird error TS2322: Type 'number' is not assignable to type 'Timer | null'.
     }
 
     componentDidMount() {
