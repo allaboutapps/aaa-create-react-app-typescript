@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import registerServiceWorker from './registerServiceWorker';
 
 // TLDR: Safari -.- 
 // polyfill intl for browsers which have not implemented this api yet
@@ -26,7 +27,7 @@ function attach() {
     const RI = require("react-intl");
     const formattersDataEN = require("react-intl/locale-data/en");
     const formattersDataDE = require("react-intl/locale-data/de");
-    
+
     RI.addLocaleData([
         ...formattersDataEN,
         ...formattersDataDE
@@ -39,4 +40,5 @@ function attach() {
         <App />,
         document.getElementById("root") as HTMLElement
     );
+    registerServiceWorker();
 }
