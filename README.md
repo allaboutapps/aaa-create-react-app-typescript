@@ -10,6 +10,8 @@ See the updated [README](packages/react-scripts/template/README.md) for more inf
 
 See [Forking react-scripts](https://github.com/facebookincubator/create-react-app/issues/682) for information of the forking process.
 
+
+
 Create React apps (with Typescript) with no build configuration.
 
 _Do you know react and want to try out typescript? Or do you know typescript and want to try out react?_ Get all the benefits from `create-react-app` but you use typescript! 🚀
@@ -168,6 +170,15 @@ When you run `npm run build` the terminal will output the error, including the h
 ![CodeHighlight](https://cloud.githubusercontent.com/assets/175278/22310149/1ee66ccc-e346-11e6-83ff-e3a053701fb4.gif)
 
 ## Changelog
+
+### 2.1.0
+* Update to `tslint@5.2.0` - thanks to @mindjuice
+* Fix test setup issue - thanks to @jonmpqts
+* Add `source-map-loader` - thanks to @Place1
+* Update to `typescript@2.3.3` - thanks to @sjdweb
+
+### 2.0.1
+* Fix issue with jest finding test files
 
 ### 2.0.0
 * Upgrade to [`react-scripts@1.x.x`](https://github.com/facebookincubator/create-react-app/blob/0d1521aabf5a0201ea1bcccc33e286afe048f820/CHANGELOG.md)

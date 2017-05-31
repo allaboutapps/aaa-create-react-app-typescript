@@ -1,0 +1,11 @@
+# http://editorconfig.org/
+# sublime plugin: https://github.com/sindresorhus/editorconfig-sublime
+# TODO: other ides...
+
+# top-most EditorConfig file
+root = true
+
+# 4 space indentation
+[*.{ts,js,tsx,css}]
+indent_style = space
+indent_size = 4

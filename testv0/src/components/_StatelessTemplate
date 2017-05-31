@@ -1,0 +1,10 @@
+import * as React from "react";
+import styled from "styled-components";
+
+import * as i18n from "../i18n/util";
+
+interface IProps { }
+
+export default function (props: IProps) {
+    return null;
+}

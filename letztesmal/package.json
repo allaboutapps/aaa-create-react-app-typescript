@@ -1,0 +1,36 @@
+{
+  "name": "letztesmal",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/isomorphic-fetch": "^0.0.34",
+    "@types/jest": "^19.2.3",
+    "@types/material-ui": "^0.17.4",
+    "@types/node": "^7.0.22",
+    "@types/react": "^15.0.25",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-tap-event-plugin": "^0.0.30",
+    "@types/react-transition-group": "^1.1.0",
+    "@types/webpack-env": "^1.13.0",
+    "hoist-non-react-statics": "^1.2.0",
+    "intl": "^1.2.5",
+    "material-ui": "^0.17.4",
+    "react": "^15.5.4",
+    "react-animations": "^0.1.0",
+    "react-dom": "^15.5.4",
+    "react-intl": "^2.2.3",
+    "react-tap-event-plugin": "^2.0.1",
+    "react-transition-group": "^1.1.2",
+    "styled-components": "^1.4.5"
+  },
+  "devDependencies": {
+    "aaa-react-scripts-ts": "file:///Users/Andi/Applications/aaa/web/create-react-app-typescript/packages/react-scripts/aaa-react-scripts-ts-2.2.0.tgz",
+    "typescript": "^2.3.2"
+  },
+  "scripts": {
+    "start": "aaa-react-scripts-ts start",
+    "build": "aaa-react-scripts-ts build",
+    "test": "aaa-react-scripts-ts test --env=jsdom",
+    "eject": "aaa-react-scripts-ts eject"
+  }
+}
