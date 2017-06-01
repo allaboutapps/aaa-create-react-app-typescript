@@ -133,25 +133,10 @@ module.exports = function(
     command = 'yarnpkg';
     args = ['add'];
   } else {
+    args = ['install', '--save', verbose && '--verbose'].filter(e => e);
     command = 'npm';
-    // <<<<<<< HEAD
-    //     args = [
-    //       'install',
-    //       '--save',
-    //       verbose && '--verbose'
-    //     ].filter(function (e) { return e; });
-    //   }
-
-    // fallback previous version of create-react-app
-    // Object.keys(appPackage.dependencies).map((dep) => {
-    //   args.push(dep + '@' + appPackage.dependencies[dep]);
-    // });
-
-    // =======
   }
-  args = ['install', '--save', verbose && '--verbose'].filter(e => e);
 
-  // >>>>>>> fc46e5e11c46cad3d7112b7ce89790322ec00843
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
     appPath,
@@ -167,7 +152,6 @@ module.exports = function(
     fs.unlinkSync(templateDependenciesPath);
   }
 
-  // <<<<<<< HEAD
   // Custom handling - we always need to retrigger the installing process as we need several additional dependencies...
   console.log(
     'Installing ' +
@@ -178,8 +162,6 @@ module.exports = function(
   );
   console.log();
 
-  // var proc = spawn.sync(command, args, { stdio: 'inherit' });
-  // =======
   const types = [
     '@types/node',
     '@types/react',
@@ -187,11 +169,10 @@ module.exports = function(
     '@types/jest',
   ];
 
-  // console.log(`Installing ${types.join(', ')} ${command}...`);
   console.log();
 
   const proc = spawn.sync(command, args.concat(types), { stdio: 'inherit' });
-  // >>>>>>> fc46e5e11c46cad3d7112b7ce89790322ec00843
+
   if (proc.status !== 0) {
     console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
     return;
