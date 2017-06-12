@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from "./registerServiceWorker";
 
 // TLDR: Safari -.- 
 // polyfill intl for browsers which have not implemented this api yet
