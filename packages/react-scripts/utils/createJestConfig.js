@@ -33,7 +33,7 @@ module.exports = (resolve, rootDir) => {
     transform: {
       '^.+\\.css$': resolve('config/jest/cssTransform.js'),
       '^.+\\.tsx?$': resolve('config/jest/typescriptTransform.js'),
-      "^.+\\.(gql|graphql)$": resolve('config/jest/gqlTransform.js'),
+      '^.+\\.(gql|graphql)$': resolve('config/jest/gqlTransform.js'),
       '^(?!.*\\.(css|json)$)': resolve('config/jest/fileTransform.js'),
     },
     transformIgnorePatterns: [
