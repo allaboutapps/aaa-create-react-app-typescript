@@ -2,6 +2,8 @@
 
 [A customized react-scripts fork](https://github.com/majodev/create-react-app-typescript).  
 
+`create-react-app my-app --scripts-version=aaa-react-scripts-ts` (the official create-react-app CLI tools must be installed globally before)
+
 This package includes scripts and configuration used by [Create React App](https://github.com/facebookincubator/create-react-app).<br>
 Please refer to its documentation:
 

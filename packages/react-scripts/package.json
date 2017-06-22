@@ -1,9 +1,10 @@
 {
   "name": "aaa-react-scripts-ts",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": "majodev/create-react-app-typescript",
   "license": "BSD-3-Clause",
+  "author": "Mario Ranftl",
   "engines": {
     "node": ">=6"
   },
