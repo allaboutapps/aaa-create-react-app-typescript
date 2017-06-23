@@ -5,6 +5,7 @@ import * as primitives from "../util/primitives";
 import * as animations from "../util/animations";
 import * as formatters from "../util/formatters";
 import FullScreenProgress from "./FullScreenProgress";
+import * as config from "../../config";
 
 interface IJSONResponse {
     time: string;
@@ -38,7 +39,7 @@ export default class Component extends React.Component<IProps, IState> {
             loading: true
         });
 
-        const res = await fetch("http://date.jsontest.com/");
+        const res = await fetch(config.API_BASE_URL);
         const data: IJSONResponse = await res.json();
 
         this.setState({
