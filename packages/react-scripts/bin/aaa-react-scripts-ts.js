@@ -52,6 +52,6 @@ switch (script) {
   }
   default:
     console.log('Unknown script "' + script + '".');
-    console.log('Perhaps you need to update react-scripts-ts?');
+    console.log('Perhaps you need to update aaa-react-scripts-ts?');
     break;
 }

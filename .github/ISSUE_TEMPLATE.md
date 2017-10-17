@@ -79,11 +79,11 @@
   Please fill in all the relevant fields by running these commands in terminal.
 -->
 
-1. `npm ls react-scripts-ts` (if you haven’t ejected): 
+1. `npm ls aaa-react-scripts-ts` (if you haven’t ejected): 
 2. `node -v`: 
 3. `npm -v`:
 4. `yarn --version` (if you use Yarn):
-5. `npm ls react-scripts-ts` (if you haven’t ejected): 
+5. `npm ls aaa-react-scripts-ts` (if you haven’t ejected): 
 
 Then, specify:
 

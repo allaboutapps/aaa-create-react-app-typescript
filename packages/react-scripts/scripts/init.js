@@ -21,7 +21,7 @@ const path = require('path');
 const chalk = require('chalk');
 const spawn = require('react-dev-utils/crossSpawn');
 
-module.exports = function (
+module.exports = function(
   appPath,
   appName,
   verbose,
@@ -36,12 +36,6 @@ module.exports = function (
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
-
-  // Define custom dev-dependencies required to be installed
-  // also directly install typescript, so it can be pinned by a shrinkwrap (to make it independent from aaa- react - scripts - ts)
-  appPackage.devDependencies = Object.assign(appPackage.devDependencies, {
-    typescript: '^2.3.2',
-  });
 
   // Setup the script rules
   appPackage.scripts = {
@@ -98,32 +92,37 @@ module.exports = function (
   );
 
   let command;
-  let args;
+  let args, argsDev, resolutions;
 
   if (useYarn) {
     command = 'yarnpkg';
     args = ['add'];
+    argsDev = ['add', '-D']; // AAA-specfic: .template.dependencies.json manages devDependencies
   } else {
-    args = ['install', '--save', verbose && '--verbose'].filter(e => e);
     command = 'npm';
+    args = ['install', '--save', verbose && '--verbose'].filter(e => e);
+    argsDev = ['install', '--save-dev', verbose && '--verbose'].filter(e => e); // AAA-specfic: .template.dependencies.json manages devDependencies
   }
 
-  // Install dev dependencies
-  const types = [
-    '@types/node',
-    '@types/react',
-    '@types/react-dom',
-    '@types/jest',
-  ];
+  // ######################
+  // AAA-MODIFICATION START
+  // ######################
+  // application normal and dev-dependencies are fully managed and version pinned in the .template.dependencies.json!
 
-  console.log(`Installing ${types.join(', ')} as dev dependencies ${command}...`);
-  console.log();
+  // // Install dev dependencies
+  // const types = [
+  //   '@types/node',
+  //   '@types/jest',
+  // ];
 
-  const devProc = spawn.sync(command, args.concat('-D').concat(types), { stdio: 'inherit' });
-  if (devProc.status !== 0) {
-    console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
-    return;
-  }
+  // console.log(`Installing ${types.join(', ')} as dev dependencies ${command}...`);
+  // console.log();
+
+  // const devProc = spawn.sync(command, args.concat('-D').concat(types), { stdio: 'inherit' });
+  // if (devProc.status !== 0) {
+  //   console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
+  //   return;
+  // }
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
@@ -137,83 +136,78 @@ module.exports = function (
         return `${key}@${templateDependencies[key]}`;
       })
     );
+
+    const templateDevDependencies = require(templateDependenciesPath)
+      .devDependencies;
+    argsDev = argsDev.concat(
+      Object.keys(templateDevDependencies).map(key => {
+        return `${key}@${templateDevDependencies[key]}`;
+      })
+    );
+
+    resolutions = require(templateDependenciesPath).resolutions;
+
     fs.unlinkSync(templateDependenciesPath);
+  } else {
+    // AAA-specific: throw!
+    throw new Error(
+      `AAA-specific: .template.dependencies.json does not exist at ${templateDependenciesPath}!`
+    );
   }
 
-  // ########################
-  // AAA-SPECIFIC: START
-  // ########################
+  // first enforce resolutions (yarn specific) in package.json as defined!
+  // rewrite the package.json...
+  // see https://yarnpkg.com/lang/en/docs/selective-version-resolutions/
+  // see https://github.com/yarnpkg/yarn/issues/3951
+  if (resolutions) {
+    console.log(`Adding resoutions (yarn specific) to package.json...`);
+    console.log();
 
-  // Custom handling - we always need to retrigger the installing process as we need several additional dependencies...
-  console.log(
-    'Installing ' +
-    Object.keys(appPackage.dependencies).join(', ') +
-    ' using ' +
-    command +
-    '...'
-  );
-  console.log();
+    const appPackageRewrite = require(path.join(appPath, 'package.json'));
+    appPackageRewrite.resolutions = resolutions;
 
-  // Define custom dependencies required to be installed
-  const types = [
-    // '@types/node',
-    // '@types/react',
-    // '@types/react-dom',
-    // '@types/jest',
-    '@types/isomorphic-fetch@^0.0.34',
-    '@types/jest@^19.2.2',
-    '@types/material-ui@^0.17.4',
-    '@types/node@^7.0.14',
-    '@types/react@^15.0.23',
-    '@types/react-dom@^15.5.0',
-    '@types/react-tap-event-plugin@^0.0.30',
-    '@types/react-transition-group@^1.1.0',
-    '@types/webpack-env@^1.13.0',
-    'hoist-non-react-statics@^1.2.0',
-    'intl@^1.2.5',
-    'material-ui@^0.17.4',
-    'react@^15.5.4',
-    'react-animations@^0.1.0',
-    'react-dom@^15.5.4',
-    'react-intl@^2.2.3',
-    'react-tap-event-plugin@^2.0.1',
-    'react-transition-group@^1.1.2',
-    'styled-components@^1.4.5',
-  ];
-
-  console.log();
-
-  const proc = spawn.sync(command, args.concat(types), { stdio: 'inherit' });
-
-  if (proc.status !== 0) {
-    console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
-    return;
+    fs.writeFileSync(
+      path.join(appPath, 'package.json'),
+      JSON.stringify(appPackageRewrite, null, 2)
+    );
   }
-
-  // ########################
-  // AAA-SPECIFIC: END
-  // ########################
 
   // Install react and react-dom for backward compatibility with old CRA cli
   // which doesn't install react and react-dom along with react-scripts
   // or template is presetend (via --internal-testing-template)
-  if (!isReactInstalled(appPackage) || template) {
-    console.log(`Installing react and react-dom using ${command}...`);
-    console.log();
 
-    const proc = spawn.sync(command, args.concat(['react', 'react-dom']), {
-      stdio: 'inherit',
-    });
-    if (proc.status !== 0) {
-      console.error(`\`${command} ${args.join(' ')}\` failed`);
-      return;
-    }
+  console.log(`Installing dev dependencies using ${command}...`);
+  console.log();
+
+  const procDev = spawn.sync(command, argsDev, {
+    stdio: 'inherit',
+  });
+  if (procDev.status !== 0) {
+    console.error(`\`${command} ${argsDev.join(' ')}\` failed`);
+    return;
   }
+
+  // if (!isReactInstalled(appPackage) || template) {
+  // always do this!
+  console.log(`Installing app dependencies using ${command}...`);
+  console.log();
+
+  const proc = spawn.sync(command, args, {
+    stdio: 'inherit',
+  });
+  if (proc.status !== 0) {
+    console.error(`\`${command} ${args.join(' ')}\` failed`);
+    return;
+  }
+  // }
+
+  // ######################
+  // AAA-MODIFICATION END
+  // ######################
 
   // Display the most elegant way to cd.
   // This needs to handle an undefined originalDirectory for
   // backward compatibility with old global-cli's.
-
   let cdpath;
   if (originalDirectory && path.join(originalDirectory, appName) === appPath) {
     cdpath = appName;

@@ -1,0 +1,30 @@
+{
+    "dependencies": {
+        "@types/isomorphic-fetch": "0.0.34",
+        "@types/material-ui": "0.17.2",
+        "@types/react": "15.6.4",
+        "@types/react-dom": "15.5.6",
+        "@types/react-tap-event-plugin": "0.0.30",
+        "@types/react-transition-group": "1.1.2",
+        "hoist-non-react-statics": "1.2.0",
+        "intl": "1.2.5",
+        "material-ui": "0.17.4",
+        "prop-types": "15.6.0",
+        "react": "15.6.2",
+        "react-animations": "0.1.0",
+        "react-dom": "15.6.2",
+        "react-intl": "2.4.0",
+        "react-tap-event-plugin": "2.0.1",
+        "react-transition-group": "1.2.1",
+        "styled-components": "1.4.6"
+    },
+    "devDependencies": {
+        "@types/jest": "20.0.8",
+        "@types/node": "6.0.89",
+        "@types/webpack-env": "1.13.2"
+    },
+    "resolutions": {
+        "@types/react": "15.6.4",
+        "@types/react-dom": "15.5.6"
+    }
+}
