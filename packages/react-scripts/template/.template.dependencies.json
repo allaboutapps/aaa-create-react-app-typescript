@@ -1,14 +1,14 @@
 {
     "dependencies": {
         "@types/isomorphic-fetch": "0.0.34",
-        "@types/material-ui": "0.17.2",
+        "@types/material-ui": "0.18.3",
         "@types/react": "15.6.4",
         "@types/react-dom": "15.5.6",
         "@types/react-tap-event-plugin": "0.0.30",
         "@types/react-transition-group": "1.1.2",
         "hoist-non-react-statics": "1.2.0",
         "intl": "1.2.5",
-        "material-ui": "0.17.4",
+        "material-ui": "0.18.7",
         "prop-types": "15.6.0",
         "react": "15.6.2",
         "react-animations": "0.1.0",
