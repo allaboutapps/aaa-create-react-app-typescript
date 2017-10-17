@@ -11,7 +11,7 @@ import Main from "./components/Main";
 // see http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-class App extends React.Component<{}, null> {
+class App extends React.Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>

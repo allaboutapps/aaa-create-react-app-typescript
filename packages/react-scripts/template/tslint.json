@@ -84,11 +84,10 @@
             "always"
         ],
         "switch-default": true,
-        "trailing-comma": false,
-        "triple-equals": [
-            true,
-            "allow-null-check"
-        ],
+
+        "trailing-comma": [false],
+
+        "triple-equals": [ true, "allow-null-check" ],
         "typedef": [
             true,
             "property-declaration"

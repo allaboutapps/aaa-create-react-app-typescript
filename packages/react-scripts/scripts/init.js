@@ -21,25 +21,21 @@ const path = require('path');
 const chalk = require('chalk');
 const spawn = require('react-dev-utils/crossSpawn');
 
-module.exports = function(
+module.exports = function (
   appPath,
   appName,
   verbose,
   originalDirectory,
   template
 ) {
-  const ownPackageName = require(path.join(
-    __dirname,
-    '..',
-    'package.json'
-  )).name;
+  const ownPackageName = require(path.join(__dirname, '..', 'package.json'))
+    .name;
   const ownPath = path.join(appPath, 'node_modules', ownPackageName);
   const appPackage = require(path.join(appPath, 'package.json'));
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
-  appPackage.devDependencies = appPackage.devDependencies || {};
 
   // Define custom dev-dependencies required to be installed
   // also directly install typescript, so it can be pinned by a shrinkwrap (to make it independent from aaa- react - scripts - ts)
@@ -112,6 +108,23 @@ module.exports = function(
     command = 'npm';
   }
 
+  // Install dev dependencies
+  const types = [
+    '@types/node',
+    '@types/react',
+    '@types/react-dom',
+    '@types/jest',
+  ];
+
+  console.log(`Installing ${types.join(', ')} as dev dependencies ${command}...`);
+  console.log();
+
+  const devProc = spawn.sync(command, args.concat('-D').concat(types), { stdio: 'inherit' });
+  if (devProc.status !== 0) {
+    console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
+    return;
+  }
+
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
     appPath,
@@ -127,13 +140,17 @@ module.exports = function(
     fs.unlinkSync(templateDependenciesPath);
   }
 
+  // ########################
+  // AAA-SPECIFIC: START
+  // ########################
+
   // Custom handling - we always need to retrigger the installing process as we need several additional dependencies...
   console.log(
     'Installing ' +
-      Object.keys(appPackage.dependencies).join(', ') +
-      ' using ' +
-      command +
-      '...'
+    Object.keys(appPackage.dependencies).join(', ') +
+    ' using ' +
+    command +
+    '...'
   );
   console.log();
 
@@ -172,6 +189,10 @@ module.exports = function(
     console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
     return;
   }
+
+  // ########################
+  // AAA-SPECIFIC: END
+  // ########################
 
   // Install react and react-dom for backward compatibility with old CRA cli
   // which doesn't install react and react-dom along with react-scripts
@@ -247,6 +268,8 @@ module.exports = function(
 function isReactInstalled(appPackage) {
   const dependencies = appPackage.dependencies || {};
 
-  return typeof dependencies.react !== 'undefined' &&
-    typeof dependencies['react-dom'] !== 'undefined';
+  return (
+    typeof dependencies.react !== 'undefined' &&
+    typeof dependencies['react-dom'] !== 'undefined'
+  );
 }

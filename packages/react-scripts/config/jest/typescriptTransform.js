@@ -2,34 +2,6 @@
 
 'use strict';
 
-const fs = require('fs');
-const tsc = require('typescript');
-const tsconfigPath = require('app-root-path').resolve('/tsconfig.json');
+const tsJestPreprocessor = require('ts-jest/preprocessor');
 
-let compilerConfig = {
-  module: tsc.ModuleKind.CommonJS,
-  jsx: tsc.JsxEmit.React,
-}
-
-if (fs.existsSync(tsconfigPath)) {
-  try {
-    const tsconfig = require(tsconfigPath);
-
-    if (tsconfig && tsconfig.compilerOptions) {
-      compilerConfig = tsconfig.compilerOptions;
-    }
-  } catch (e) { /* Do nothing - default is set */ }
-}
-
-module.exports = {
-  process(src, path) {
-    if (path.endsWith('.ts') || path.endsWith('.tsx')) {
-      return tsc.transpile(
-        src,
-        compilerConfig,
-        path, []
-      );
-    }
-    return src;
-  },
-};
+module.exports = tsJestPreprocessor;

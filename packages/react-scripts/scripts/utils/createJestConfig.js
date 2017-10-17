@@ -23,10 +23,10 @@ module.exports = (resolve, rootDir) => {
   // TODO: I don't know if it's safe or not to just use / as path separator
   // in Jest configs. We need help from somebody with Windows to determine this.
   const config = {
+    mapCoverage: true,
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
     setupFiles: [resolve('config/polyfills.js')],
     setupTestFrameworkScriptFile: setupTestsFile,
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.ts?(x)',
       '<rootDir>/src/**/?(*.)(spec|test).ts?(x)',
@@ -37,14 +37,31 @@ module.exports = (resolve, rootDir) => {
       '^.+\\.css$': resolve('config/jest/cssTransform.js'),
       '^.+\\.tsx?$': resolve('config/jest/typescriptTransform.js'),
       '^.+\\.(gql|graphql)$': resolve('config/jest/gqlTransform.js'),
-      '^(?!.*\\.(css|json)$)': resolve('config/jest/fileTransform.js'),
+      '^(?!.*\\.(js|jsx|css|json)$)': resolve('config/jest/fileTransform.js'),
     },
     transformIgnorePatterns: [
-      '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tssx)$',
+      '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
     ],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
     },
+    moduleFileExtensions: [
+      'web.ts',
+      'ts',
+      'web.tsx',
+      'tsx',
+      'web.js',
+      'js',
+      'web.jsx',
+      'jsx',
+      'json',
+      'node'
+    ],
+    globals: {
+      'ts-jest': {
+        tsConfigFile: paths.appTsTestConfig,
+      },
+    }
   };
   if (rootDir) {
     config.rootDir = rootDir;
@@ -68,20 +85,20 @@ module.exports = (resolve, rootDir) => {
       console.error(
         chalk.red(
           'Out of the box, Create React App only supports overriding ' +
-            'these Jest options:\n\n' +
-            supportedKeys.map(key => chalk.bold('  \u2022 ' + key)).join('\n') +
-            '.\n\n' +
-            'These options in your package.json Jest configuration ' +
-            'are not currently supported by Create React App:\n\n' +
-            unsupportedKeys
-              .map(key => chalk.bold('  \u2022 ' + key))
-              .join('\n') +
-            '\n\nIf you wish to override other Jest options, you need to ' +
-            'eject from the default setup. You can do so by running ' +
-            chalk.bold('npm run eject') +
-            ' but remember that this is a one-way operation. ' +
-            'You may also file an issue with Create React App to discuss ' +
-            'supporting more options out of the box.\n'
+          'these Jest options:\n\n' +
+          supportedKeys.map(key => chalk.bold('  \u2022 ' + key)).join('\n') +
+          '.\n\n' +
+          'These options in your package.json Jest configuration ' +
+          'are not currently supported by Create React App:\n\n' +
+          unsupportedKeys
+            .map(key => chalk.bold('  \u2022 ' + key))
+            .join('\n') +
+          '\n\nIf you wish to override other Jest options, you need to ' +
+          'eject from the default setup. You can do so by running ' +
+          chalk.bold('npm run eject') +
+          ' but remember that this is a one-way operation. ' +
+          'You may also file an issue with Create React App to discuss ' +
+          'supporting more options out of the box.\n'
         )
       );
       process.exit(1);

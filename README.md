@@ -165,11 +165,64 @@ All of them are transitive dependencies of the provided npm package.
 ## Features
 
 ### Code highlighting on error
-When you run `npm run build` the terminal will output the error, including the highlighted sourecode (like babel)!
+When you run `npm run build` the terminal will output the error, including the highlighted sourcecode (like babel)!
 
 ![CodeHighlight](https://cloud.githubusercontent.com/assets/175278/22310149/1ee66ccc-e346-11e6-83ff-e3a053701fb4.gif)
 
+## Migration
+
+In general, most upgrades won't require any migration steps to work, but if you experience problems after an upgrade, please file an issue, and we'll add it to the list of migration steps below.
+
+### From `<2.5.0` to `>=2.5.0`
+
+Version `2.5.0` introduces a new config file for jest, that is necessary for the tests to run. If you were previously running a version older than `v2.5.0` and upgraded to `v2.5.0` or newer, you need to manually add the new file, or else you'll get an error similar to this when trying to run your tests:
+
+```javascript
+Test suite failed to run
+
+{
+    "messageText": "Cannot read file 'C:\\[project]\\tsconfig.test.json': ENOENT: no such file or directory, open 'C:\\[project]\\tsconfig.test.json'.",
+    "category": 1,
+    "code": 5012
+}
+```
+
+To fix this, create a new file *in the root of the project* called `tsconfig.test.json`, and paste [the content of this file into it](https://raw.githubusercontent.com/wmonk/create-react-app-typescript/master/packages/react-scripts/template/tsconfig.test.json). Everything should work now. For more info, please see [this issue](https://github.com/wmonk/create-react-app-typescript/issues/141).
+
 ## Changelog
+
+### 2.7.0
+* Merge react-scripts@1.0.13 - @JohnNilsson
+* Fix git tempalte - @hktonylee
+* Provide migration docs - @JReinhold
+* Updated dependencies - @swengorschewski
+* Fix tslint config - @comerc
+
+### 2.6.0
+* Merge react-scripts@1.0.10 - @wmonk
+* Update component template - @pelotom
+
+### 2.5.0
+* Support dynamic imports - thanks @nicolaserny, @DorianGrey
+* Fix up tsconfig - thanks @js-n
+* Fix readme typo - thanks @adambowles
+* Move to ts-jest - thanks @DorianGrey
+
+### 2.4.0
+* Upgrade typescript to 2.4 and ts-loader to 2.2.1 - thanks @frederickfogerty
+* Fix readme typo - thanks @wrongway4you
+
+### 2.3.2
+* Fix `typescript` version to 2.3.x until 2.4 @types are fixed
+
+### 2.3.1
+
+* All tsc to parse config (for `extend`) - Thanks to @DorianGrey
+* Fix various jest issues - thanks to @zinserjan
+* Fix code coverage - thanks to @zinserjan
+
+### 2.2.0
+* Upgrade to [`react-scripts@1.0.6`](https://github.com/facebookincubator/create-react-app/)
 
 ### 2.1.0
 * Update to `tslint@5.2.0` - thanks to @mindjuice
