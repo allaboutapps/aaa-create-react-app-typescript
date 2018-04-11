@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 'use strict';
 
@@ -14,7 +12,9 @@ const launchEditorEndpoint = require('./launchEditorEndpoint');
 module.exports = function createLaunchEditorMiddleware() {
   return function launchEditorMiddleware(req, res, next) {
     if (req.url.startsWith(launchEditorEndpoint)) {
-      launchEditor(req.query.fileName, req.query.lineNumber);
+      const lineNumber = parseInt(req.query.lineNumber, 10) || 1;
+      const colNumber = parseInt(req.query.colNumber, 10) || 1;
+      launchEditor(req.query.fileName, lineNumber, colNumber);
       res.end();
     } else {
       next();

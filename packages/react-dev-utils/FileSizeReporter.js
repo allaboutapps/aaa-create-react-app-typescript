@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 'use strict';
@@ -27,21 +25,29 @@ function printFileSizesAfterBuild(
 ) {
   var root = previousSizeMap.root;
   var sizes = previousSizeMap.sizes;
-  var assets = webpackStats
-    .toJson()
-    .assets.filter(asset => /\.(js|css)$/.test(asset.name))
-    .map(asset => {
-      var fileContents = fs.readFileSync(path.join(root, asset.name));
-      var size = gzipSize(fileContents);
-      var previousSize = sizes[removeFileNameHash(root, asset.name)];
-      var difference = getDifferenceLabel(size, previousSize);
-      return {
-        folder: path.join(path.basename(buildFolder), path.dirname(asset.name)),
-        name: path.basename(asset.name),
-        size: size,
-        sizeLabel: filesize(size) + (difference ? ' (' + difference + ')' : ''),
-      };
-    });
+  var assets = (webpackStats.stats || [webpackStats])
+    .map(stats =>
+      stats
+        .toJson()
+        .assets.filter(asset => /\.(js|css)$/.test(asset.name))
+        .map(asset => {
+          var fileContents = fs.readFileSync(path.join(root, asset.name));
+          var size = gzipSize(fileContents);
+          var previousSize = sizes[removeFileNameHash(root, asset.name)];
+          var difference = getDifferenceLabel(size, previousSize);
+          return {
+            folder: path.join(
+              path.basename(buildFolder),
+              path.dirname(asset.name)
+            ),
+            name: path.basename(asset.name),
+            size: size,
+            sizeLabel:
+              filesize(size) + (difference ? ' (' + difference + ')' : '')
+          };
+        })
+    )
+    .reduce((single, all) => all.concat(single), []);
   assets.sort((a, b) => b.size - a.size);
   var longestSizeLabelLength = Math.max.apply(
     null,
@@ -122,12 +128,15 @@ function measureFileSizesBeforeBuild(buildFolder) {
       if (!err && fileNames) {
         sizes = fileNames
           .filter(fileName => /\.(js|css)$/.test(fileName))
-          .reduce((memo, fileName) => {
-            var contents = fs.readFileSync(fileName);
-            var key = removeFileNameHash(buildFolder, fileName);
-            memo[key] = gzipSize(contents);
-            return memo;
-          }, {});
+          .reduce(
+            (memo, fileName) => {
+              var contents = fs.readFileSync(fileName);
+              var key = removeFileNameHash(buildFolder, fileName);
+              memo[key] = gzipSize(contents);
+              return memo;
+            },
+            {}
+          );
       }
       resolve({
         root: buildFolder,

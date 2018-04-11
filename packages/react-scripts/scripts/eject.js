@@ -1,11 +1,9 @@
 // @remove-file-on-eject
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 'use strict';
 
@@ -56,11 +54,17 @@ inquirer
     if (gitStatus) {
       console.error(
         chalk.red(
-          `This git repository has untracked files or uncommitted changes:\n\n` +
-            gitStatus.split('\n').map(line => '  ' + line) +
-            '\n\n' +
+          'This git repository has untracked files or uncommitted changes:'
+        ) +
+          '\n\n' +
+          gitStatus
+            .split('\n')
+            .map(line => line.match(/ .*/g)[0].trim())
+            .join('\n') +
+          '\n\n' +
+          chalk.red(
             'Remove untracked files, stash or commit any changes, and try again.'
-        )
+          )
       );
       process.exit(1);
     }
@@ -85,16 +89,19 @@ inquirer
     const folders = ['config', 'config/jest', 'scripts'];
 
     // Make shallow array of files paths
-    const files = folders.reduce((files, folder) => {
-      return files.concat(
-        fs
-          .readdirSync(path.join(ownPath, folder))
-          // set full path
-          .map(file => path.join(ownPath, folder, file))
-          // omit dirs from file list
-          .filter(file => fs.lstatSync(file).isFile())
-      );
-    }, []);
+    const files = folders.reduce(
+      (files, folder) => {
+        return files.concat(
+          fs
+            .readdirSync(path.join(ownPath, folder))
+            // set full path
+            .map(file => path.join(ownPath, folder, file))
+            // omit dirs from file list
+            .filter(file => fs.lstatSync(file).isFile())
+        );
+      },
+      []
+    );
 
     // Ensure that the app folder is clean and we won't override any files
     folders.forEach(verifyAbsent);
@@ -121,19 +128,18 @@ inquirer
       if (content.match(/\/\/ @remove-file-on-eject/)) {
         return;
       }
-      content =
-        content
-          // Remove dead code from .js files on eject
-          .replace(
-            /\/\/ @remove-on-eject-begin([\s\S]*?)\/\/ @remove-on-eject-end/gm,
-            ''
-          )
-          // Remove dead code from .applescript files on eject
-          .replace(
-            /-- @remove-on-eject-begin([\s\S]*?)-- @remove-on-eject-end/gm,
-            ''
-          )
-          .trim() + '\n';
+      content = content
+        // Remove dead code from .js files on eject
+        .replace(
+          /\/\/ @remove-on-eject-begin([\s\S]*?)\/\/ @remove-on-eject-end/gm,
+          ''
+        )
+        // Remove dead code from .applescript files on eject
+        .replace(
+          /-- @remove-on-eject-begin([\s\S]*?)-- @remove-on-eject-end/gm,
+          ''
+        )
+        .trim() + '\n';
       console.log(`  Adding ${cyan(file.replace(ownPath, ''))} to the project`);
       fs.writeFileSync(file.replace(ownPath, appPath), content);
     });
@@ -185,9 +191,7 @@ inquirer
           'node scripts/$1.js'
         );
         console.log(
-          `  Replacing ${cyan(`"${binKey} ${key}"`)} with ${cyan(
-            `"node scripts/${key}.js"`
-          )}`
+          `  Replacing ${cyan(`"${binKey} ${key}"`)} with ${cyan(`"node scripts/${key}.js"`)}`
         );
       });
     });

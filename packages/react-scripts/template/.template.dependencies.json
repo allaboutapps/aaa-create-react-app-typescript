@@ -21,7 +21,8 @@
     "devDependencies": {
         "@types/jest": "20.0.8",
         "@types/node": "6.0.89",
-        "@types/webpack-env": "1.13.2"
+        "@types/webpack-env": "1.13.2",
+        "typescript": "^2.8.0"
     },
     "resolutions": {
         "@types/react": "15.6.4",
