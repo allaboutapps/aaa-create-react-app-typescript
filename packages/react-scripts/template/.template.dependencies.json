@@ -2,8 +2,8 @@
     "dependencies": {
         "@types/isomorphic-fetch": "0.0.34",
         "@types/material-ui": "0.18.3",
-        "@types/react": "15.6.4",
-        "@types/react-dom": "15.5.6",
+        "@types/react": "15.6.15",
+        "@types/react-dom": "15.5.7",
         "@types/react-tap-event-plugin": "0.0.30",
         "@types/react-transition-group": "1.1.2",
         "hoist-non-react-statics": "1.2.0",
@@ -25,7 +25,7 @@
         "typescript": "^2.8.0"
     },
     "resolutions": {
-        "@types/react": "15.6.4",
-        "@types/react-dom": "15.5.6"
+        "@types/react": "15.6.15",
+        "@types/react-dom": "15.5.7"
     }
 }

@@ -1,7 +1,6 @@
 {
   "lerna": "2.6.0",
-  "npmClient": "yarn",
-  "useWorkspaces": true,
+  "npmClient": "npm",
   "version": "independent",
   "changelog": {
     "repo": "facebookincubator/create-react-app",

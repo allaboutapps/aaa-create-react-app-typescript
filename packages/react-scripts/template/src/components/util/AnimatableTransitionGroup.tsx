@@ -43,7 +43,7 @@ export default function createAnimatableTransitionGroup(enterKeyframes: string, 
                 transitionName={styleName}
                 transitionEnterTimeout={durationEnterMs}
                 transitionLeaveTimeout={durationLeaveMs}
-                {...defaults}
+                {...defaults as any}
             >
                 {props.children}
             </StyledCSSTransitionGroup>

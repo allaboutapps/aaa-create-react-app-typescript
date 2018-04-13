@@ -21,7 +21,7 @@ interface IState {
 
 export default class Component extends React.Component<IProps, IState> {
 
-    headShakeAnimation: animations.Animatable;
+    public headShakeAnimation!: any;
 
     constructor(props: IProps) {
         super(props);
@@ -33,7 +33,7 @@ export default class Component extends React.Component<IProps, IState> {
 
     }
 
-    fetchRemoteTime = async () => {
+    public fetchRemoteTime = async () => {
 
         this.setState({
             loading: true
@@ -51,13 +51,13 @@ export default class Component extends React.Component<IProps, IState> {
 
     }
 
-    reset = () => {
+    public reset = () => {
         this.setState({
             data: null
         });
     }
 
-    render() {
+    public render() {
         return (
             <div>
 
@@ -72,13 +72,13 @@ export default class Component extends React.Component<IProps, IState> {
                     onTouchTap={this.reset}
                 />
 
-                <animations.HeadShakeAnimatable durationMs={1000} innerRef={(c) => this.headShakeAnimation = c}>
+                {(<animations.HeadShakeAnimatable durationMs={1000} innerRef={(c: any) => (this.headShakeAnimation as any) = (c as any)}>
 
                     {this.state.data ? (
                         <p><small><formatters.IsoDate date={new Date(this.state.data.milliseconds_since_epoch).toISOString()} /></small></p>
                     ) : null}
 
-                </animations.HeadShakeAnimatable>
+                </animations.HeadShakeAnimatable>) as any}
 
             </div>
         );

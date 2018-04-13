@@ -72,8 +72,10 @@ export class Animatable extends React.Component<IAnimatableProps & {
 }
 
 export default function createAnimatable(keyframes: string): React.ComponentClass<IAnimatableProps & { innerRef?: (c: Animatable) => void }> {
-    return styled(Animatable) `
-        animation: ${keyframes} ${props => props.durationMs}ms ${props => props.timingFn ? props.timingFn : ""};
+    const anim = styled(Animatable as any) `
+        animation: ${keyframes} ${(props: any) => props.durationMs}ms ${(props: any) => props.timingFn ? props.timingFn : ""};
         animation-fill-mode: both;
     `;
+
+    return anim as any;
 } 
