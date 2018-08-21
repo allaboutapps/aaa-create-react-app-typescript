@@ -1,6 +1,4 @@
 # http://editorconfig.org/
-# sublime plugin: https://github.com/sindresorhus/editorconfig-sublime
-# TODO: other ides...
 
 # top-most EditorConfig file
 root = true
