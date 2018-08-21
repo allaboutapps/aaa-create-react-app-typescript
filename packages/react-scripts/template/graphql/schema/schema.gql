@@ -1,0 +1,190 @@
+schema {
+  query: RootQueryType
+  mutation: Mutation
+}
+
+"""A Animal instance"""
+type Animal {
+  uid: UUID!
+  name: SequelizeJSON!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  TerritoryUid: UUID
+
+  """The ID of an object"""
+  id: ID!
+}
+
+"""A AppUserProfile instance"""
+type AppUserProfile {
+  UserUid: UUID!
+  hasGDPROptOut: Boolean!
+  legalAcceptedAt: DateTime
+  givenName: String!
+  familyName: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  """The ID of an object"""
+  id: ID!
+
+  """Resolves a single User instance. """
+  user(uid: UUID): User
+}
+
+"""A Country instance"""
+type Country {
+  uid: UUID!
+  name: SequelizeJSON!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  """The ID of an object"""
+  id: ID!
+
+  """Resolves a list of States ."""
+  states(uid: UUID): [State]
+}
+
+enum CountryDefaultOrderBy {
+  NAME_ASC
+}
+
+"""
+A special custom Scalar type for Dates that converts to a ISO 8601 formatted String (YYYY-MM-DDTHH:mm:ss.sssZ)
+Might throw 'INVALID_GRAPHQL_DATE_TIME'.
+"""
+scalar DateTime
+
+"""
+This special 'Mutation' node wraps all available mutations this service provides (ways to mutate data).
+"""
+type Mutation {
+  """Creates a new animal"""
+  createAnimal(name: SequelizeJSON!, rest: Boolean!, note: String, showInOpenSeasons: Boolean, stateUid: UUID!, openSeason1: [String], openSeason2: [String]): Animal
+
+  """Deletes a state animal"""
+  deleteStateAnimal(uid: UUID!): StateAnimal
+
+  """Updates an animal"""
+  updateAnimal(stateAnimalUid: UUID!, name: SequelizeJSON!, rest: Boolean!, note: String, showInOpenSeasons: Boolean, openSeason1: [String], openSeason2: [String]): Animal
+
+  """Throws a test error"""
+  testError: Boolean
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""A OpenSeason instance"""
+type OpenSeason {
+  uid: UUID!
+  period: [String]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  StateAnimalUid: UUID
+
+  """The ID of an object"""
+  id: ID!
+}
+
+"""A Permission instance"""
+type Permission {
+  uid: UUID!
+  scope: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  """The ID of an object"""
+  id: ID!
+
+  """Resolves a list of Users ."""
+  users(uid: UUID): [User]
+}
+
+"""
+This special 'RootQueryType' node wraps all available queries this service provides (ways to get data).
+"""
+type RootQueryType {
+  """Resolves a list of Countries ."""
+  countries(uid: UUID, orderBy: CountryDefaultOrderBy = NAME_ASC): [Country]
+
+  """Get all state animals for a given state uid"""
+  stateAnimals(stateUid: UUID!): [StateAnimal]
+
+  """
+  Resolves a single User instance. 
+  Might throw 'ENTITY_NOT_FOUND'.
+  """
+  me: User
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+"""The `JSON` scalar type represents raw JSON as values."""
+scalar SequelizeJSON
+
+"""A State instance"""
+type State {
+  uid: UUID!
+  name: SequelizeJSON!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  CountryUid: UUID
+
+  """The ID of an object"""
+  id: ID!
+}
+
+"""A StateAnimal instance"""
+type StateAnimal {
+  uid: UUID!
+  rest: Boolean!
+  note: String
+  showInOpenSeasons: Boolean
+  AnimalUid: UUID!
+  StateUid: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  """The ID of an object"""
+  id: ID!
+
+  """Resolves a single Animal instance. """
+  animal(uid: UUID): Animal
+
+  """Resolves a list of OpenSeasons ."""
+  openSeasons(uid: UUID): [OpenSeason]
+
+  """Resolves a single State instance. """
+  state(uid: UUID): State
+}
+
+"""A User instance"""
+type User {
+  uid: UUID!
+  username: String
+  isActive: Boolean
+
+  """The ID of an object"""
+  id: ID!
+
+  """Resolves a single AppUserProfile instance. """
+  appUserProfile(UserUid: UUID): AppUserProfile
+
+  """Resolves a list of Permissions ."""
+  permissions(uid: UUID): [Permission]
+}
+
+"""
+A special custom Scalar type for UUID (all versions) that directly converts to String
+Might throw 'INVALID_UUID'.
+"""
+scalar UUID
