@@ -23,7 +23,7 @@ export default function register() {
   if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(
-      process.env.PUBLIC_URL!,
+      process.env.PUBLIC_URL as string,
       window.location.toString()
     );
     if (publicUrl.origin !== window.location.origin) {
@@ -42,10 +42,11 @@ export default function register() {
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
+        // tslint:disable-next-line:no-floating-promises
         navigator.serviceWorker.ready.then(() => {
           console.log(
             "This web app is being served cache-first by a service " +
-              "worker. To learn more, visit https://goo.gl/SC7cgQ"
+            "worker. To learn more, visit https://goo.gl/SC7cgQ"
           );
         });
       } else {
@@ -94,10 +95,13 @@ function checkValidServiceWorker(swUrl: string) {
       // Ensure service worker exists, and that we really are getting a JS file.
       if (
         response.status === 404 ||
+        // tslint:disable-next-line:no-non-null-assertion
         response.headers.get("content-type")!.indexOf("javascript") === -1
       ) {
         // No service worker found. Probably a different app. Reload the page.
+        // tslint:disable-next-line:no-floating-promises
         navigator.serviceWorker.ready.then(registration => {
+          // tslint:disable-next-line:no-floating-promises
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -116,7 +120,9 @@ function checkValidServiceWorker(swUrl: string) {
 
 export function unregister() {
   if ("serviceWorker" in navigator) {
+    // tslint:disable-next-line:no-floating-promises
     navigator.serviceWorker.ready.then(registration => {
+      // tslint:disable-next-line:no-floating-promises
       registration.unregister();
     });
   }
