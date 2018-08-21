@@ -1,0 +1,3 @@
+const Styles = {};
+
+export { Styles };
