@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import registerServiceWorker from "./registerServiceWorker";
 
-// TLDR: Safari -.- 
+// TLDR: Safari -.-
 // polyfill intl for browsers which have not implemented this api yet
 // will only be injected if Intl is not provided by the browser.
 // see https://github.com/andyearnshaw/Intl.js/#intljs-and-browserifywebpack
@@ -11,10 +11,10 @@ if (!global.Intl) {
         "intl",
         "intl/locale-data/jsonp/en.js",
         "intl/locale-data/jsonp/de.js"
-    ], (require) => {
-        require("intl");
-        require("intl/locale-data/jsonp/en.js");
-        require("intl/locale-data/jsonp/de.js");
+    ], (_require) => {
+        _require("intl");
+        _require("intl/locale-data/jsonp/en.js");
+        _require("intl/locale-data/jsonp/de.js");
         attach();
     });
 } else {
@@ -38,7 +38,7 @@ function attach() {
 
     ReactDOM.render(
         <App />,
-        document.getElementById("root") as HTMLElement
+        document.getElementById("root")
     );
     registerServiceWorker();
 }
