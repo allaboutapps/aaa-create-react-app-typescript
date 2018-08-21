@@ -1,24 +1,20 @@
+import { MuiThemeProvider } from "@material-ui/core";
 import * as React from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import * as injectTapEventPlugin from "react-tap-event-plugin";
 import { IntlProvider } from "react-intl";
-
-import muiTheme from "./muiTheme";
+import { AppRouter } from "./components/routers/AppRouter";
+import { theme } from "./components/util/Theme";
 import baseLocale from "./i18n/en";
-import Main from "./components/Main";
-
-// Needed for onTouchTap click handlers 
-// see http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
 
 class App extends React.Component {
     render() {
         return (
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <IntlProvider locale="en" messages={baseLocale}>
-                    <Main />
-                </IntlProvider>
-            </MuiThemeProvider>
+            <>
+                <MuiThemeProvider theme={theme}>
+                    <IntlProvider locale="en" messages={baseLocale}>
+                        <AppRouter />
+                    </IntlProvider>
+                </MuiThemeProvider>
+            </>
         );
     }
 }
