@@ -19,7 +19,7 @@ const path = require('path');
 const chalk = require('chalk');
 const spawn = require('react-dev-utils/crossSpawn');
 
-module.exports = function(
+module.exports = function (
   appPath,
   appName,
   verbose,
@@ -42,6 +42,11 @@ module.exports = function(
     build: 'aaa-react-scripts-ts build',
     test: 'aaa-react-scripts-ts test --env=jsdom',
     eject: 'aaa-react-scripts-ts eject',
+    "lint": "tslint --project tsconfig.json -c tslint.json",
+    "gql": "npm run gql:introspect && npm run gql:types",
+    "gql:types": "cd ./graphql/schema && ./_generate.sh",
+    "gql:introspect": "cd ./graphql/schema && node _introspect.js",
+    "gql:watch": "npm-watch"
   };
 
   fs.writeFileSync(
@@ -58,9 +63,9 @@ module.exports = function(
   }
 
   // Copy the files for the user
-  const templatePath = template
-    ? path.resolve(originalDirectory, template)
-    : path.join(ownPath, 'template');
+  const templatePath = template ?
+    path.resolve(originalDirectory, template) :
+    path.join(ownPath, 'template');
   if (fs.existsSync(templatePath)) {
     fs.copySync(templatePath, appPath);
   } else {
@@ -74,8 +79,7 @@ module.exports = function(
   // See: https://github.com/npm/npm/issues/1862
   fs.move(
     path.join(appPath, 'gitignore'),
-    path.join(appPath, '.gitignore'),
-    [],
+    path.join(appPath, '.gitignore'), [],
     err => {
       if (err) {
         // Append if there's already a `.gitignore` file there
