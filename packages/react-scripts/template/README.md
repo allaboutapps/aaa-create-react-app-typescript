@@ -1581,6 +1581,47 @@ Run `npm test -- --coverage` (note extra `--` in the middle) to include a covera
 
 Note that tests run much slower with coverage so it is recommended to run it separately from your normal workflow.
 
+#### Configuration
+
+The default Jest coverage configuration can be overriden by adding any of the following supported keys to a Jest config in your package.json.
+
+Supported overrides:
+ - [`collectCoverageFrom`](https://facebook.github.io/jest/docs/en/configuration.html#collectcoveragefrom-array)
+ - [`coverageReporters`](https://facebook.github.io/jest/docs/en/configuration.html#coveragereporters-array-string)
+ - [`coverageThreshold`](https://facebook.github.io/jest/docs/en/configuration.html#coveragethreshold-object)
+ - [`snapshotSerializers`](https://facebook.github.io/jest/docs/en/configuration.html#snapshotserializers-array-string)
+ - [`moduleNameMapper`](https://facebook.github.io/jest/docs/en/configuration.html#modulenamemapper-object-string-string)
+
+Example package.json:
+
+```json
+{
+  "name": "your-package",
+  "jest": {
+    "collectCoverageFrom" : [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": ["text"],
+    "snapshotSerializers": ["my-serializer-module"],
+    "moduleNameMapper": {
+      "^~/(.*)$": "<rootDir>/src/$1"
+    }
+  }
+}
+```
+
+Note that customizing the `moduleNameMapper` configuration will override the default (`{ '^react-native$': 'react-native-web' }`).
+
 ### Continuous Integration
 
 By default `npm test` runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called `CI`.
@@ -2264,9 +2305,6 @@ GitHub Pages doesn’t support routers that use the HTML5 `pushState` history AP
 * You could switch from using HTML5 history API to routing with hashes. If you use React Router, you can switch to `hashHistory` for this effect, but the URL will be longer and more verbose (for example, `http://user.github.io/todomvc/#/todos/42?_k=yknaj`). [Read more](https://reacttraining.com/react-router/web/api/Router) about different history implementations in React Router.
 * Alternatively, you can use a trick to teach GitHub Pages to handle 404 by redirecting to your `index.html` page with a special redirect parameter. You would need to add a `404.html` file with the redirection code to the `build` folder before deploying your project, and you’ll need to add code handling the redirect parameter to `index.html`. You can find a detailed explanation of this technique [in this guide](https://github.com/rafrex/spa-github-pages).
 
-<<<<<<< HEAD
-### Heroku
-=======
 #### Troubleshooting
 
 ##### "/dev/tty: No such a device or address"
@@ -2278,7 +2316,6 @@ If, when deploying, you get `/dev/tty: No such a device or address` or a similar
 3. Try `npm run deploy again`
 
 ### [Heroku](https://www.heroku.com/)
->>>>>>> dfbc71ce2ae07547a8544cce14a1a23fac99e071
 
 Use the [Heroku Buildpack for Create React App](https://github.com/mars/create-react-app-buildpack).<br>
 You can find instructions in [Deploying React with Zero Configuration](https://blog.heroku.com/deploying-react-with-zero-configuration).

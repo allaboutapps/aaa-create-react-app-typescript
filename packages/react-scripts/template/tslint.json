@@ -104,6 +104,23 @@
     "react-this-binding-issue": false, // Allow lambda expressions.
     "no-console": false, // Just let me debug whithout everything exploding.
     "strict-boolean-expressions": false,
-    "function-name": false
+    "function-name": false,
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-module",
+      "check-operator",
+      "check-separator",
+      "check-type",
+      "check-typecast"
+    ]
+  },
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js"
+    ]
   }
 }

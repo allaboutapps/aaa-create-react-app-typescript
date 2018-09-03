@@ -41,8 +41,8 @@ const getPublicUrl = appPackageJson =>
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
-  const servedUrl = envPublicUrl ||
-    (publicUrl ? url.parse(publicUrl).pathname : '/');
+  const servedUrl =
+    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
   return ensureSlash(servedUrl, true);
 }
 
@@ -60,6 +60,7 @@ module.exports = {
   testsSetup: resolveApp('src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
   appTsConfig: resolveApp('tsconfig.json'),
+  appTsProdConfig: resolveApp('tsconfig.prod.json'),
   appTsLint: resolveApp('tslint.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
@@ -83,6 +84,7 @@ module.exports = {
   testsSetup: resolveApp('src/setupTests.ts'),
   appNodeModules: resolveApp('node_modules'),
   appTsConfig: resolveApp('tsconfig.json'),
+  appTsProdConfig: resolveApp('tsconfig.prod.json'),
   appTsTestConfig: resolveApp('tsconfig.test.json'),
   appTsLint: resolveApp('tslint.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
@@ -94,7 +96,8 @@ module.exports = {
 
 const ownPackageJson = require('../package.json');
 const reactScriptsPath = resolveApp(`node_modules/${ownPackageJson.name}`);
-const reactScriptsLinked = fs.existsSync(reactScriptsPath) &&
+const reactScriptsLinked =
+  fs.existsSync(reactScriptsPath) &&
   fs.lstatSync(reactScriptsPath).isSymbolicLink();
 
 // config before publish: we're in ./packages/react-scripts/config/
@@ -116,6 +119,7 @@ if (
     testsSetup: resolveOwn('template/src/setupTests.ts'),
     appNodeModules: resolveOwn('node_modules'),
     appTsConfig: resolveOwn('template/tsconfig.json'),
+    appTsProdConfig: resolveOwn('template/tsconfig.prod.json'),
     appTsLint: resolveOwn('template/tslint.json'),
     appTsTestConfig: resolveOwn('template/tsconfig.test.json'),
     publicUrl: getPublicUrl(resolveOwn('package.json')),
