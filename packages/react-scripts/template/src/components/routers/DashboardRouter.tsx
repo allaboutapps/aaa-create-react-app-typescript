@@ -12,12 +12,12 @@ type IProps = i18n.InjectedIntlProps;
 class DashboardRouter extends React.Component<IProps> {
     render() {
         return (
-            <div>
+            <>
                 <Switch>
                     <Route exact path={Routes.DASHBOARD.ROOT} component={() => { return <h1>Welcome to the dashboard!</h1>; }} />
                     <Route component={NotFoundSite} />
                 </Switch>
-            </div>
+            </>
         );
     }
 }

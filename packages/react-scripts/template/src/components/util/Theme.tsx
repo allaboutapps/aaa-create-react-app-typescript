@@ -1,7 +1,6 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import { Styles } from "./Styles";
 
-// tslint:disable-next-line
 const theme = createMuiTheme({
   // palette: {
   //   primary: {
