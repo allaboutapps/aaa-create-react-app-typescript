@@ -82,7 +82,8 @@ class Auth {
                 method: "POST",
                 body: JSON.stringify({
                     refreshToken: this.credentials.refreshToken,
-                    grantType: "refreshToken"
+                    grantType: "refreshToken",
+                    scope: "cms"
                 })
             });
 
