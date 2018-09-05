@@ -8,6 +8,7 @@ import { LoginSite } from "../sites/LoginSite";
 import { NotFoundSite } from "../sites/NotFoundSite";
 import { generalStore } from "../stores/GeneralStore";
 import { LoadingOverlay } from "../ui/LoadingOverlay";
+import { FormValidations } from "../util/FormValidations";
 import { ui } from "../util/UIHelpers";
 import { DashboardRouter } from "./DashboardRouter";
 import { history } from "./history";
@@ -22,6 +23,7 @@ class AppRouter extends React.Component<IProps> {
     constructor(props: any) {
         super(props);
         ui.__ = i18n.bindStr(props.intl);
+        FormValidations.addRules();
     }
 
     render() {
