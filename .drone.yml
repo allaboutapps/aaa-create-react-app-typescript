@@ -74,13 +74,13 @@ pipeline:
       - yarn build
     <<: *WHEN_BUILD_EVENT
 
-  "test (scaffolded project)":
-    group: check
-    image: ${DRONE_REPO,,}-monorepo
-    commands:
-      - cd my-app-ci
-      - yarn test
-    <<: *WHEN_BUILD_EVENT
+  # "test (scaffolded project)":
+  #   group: check
+  #   image: ${DRONE_REPO,,}-monorepo
+  #   commands:
+  #     - cd my-app-ci
+  #     - yarn test
+  #   <<: *WHEN_BUILD_EVENT
 
 # Long living services where the startup order does not matter (otherwise use detach: true)
 services:
