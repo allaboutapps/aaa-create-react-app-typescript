@@ -1,0 +1,95 @@
+# -----------------------------------------------------------------------------
+# SETTINGS
+# -----------------------------------------------------------------------------
+
+# Drone matrix: Additional ENV vars for substitution - http://docs.drone.io/matrix-builds/
+# Will be evaluated BEFORE the YAML is parsed, ONLY strings allowed, NO substitutions ${XXX} here.
+
+matrix:
+  include:
+    - BUILD_ENV: all
+
+# YAML Configuration anchors - https://learnxinyminutes.com/docs/yaml/
+# Will be evaluated WHILE the YAML is parsed, any valid yaml allowed, substitutions ${XXX} allowed.
+
+alias:
+
+  # Which build events should trigger the main pipeline (defaults to all)
+  - &BUILD_EVENTS [push, pull_request, tag]
+
+  # Pipeline merge helper: only execute if build event received
+  - &WHEN_BUILD_EVENT
+    when:
+      event: *BUILD_EVENTS
+
+# The actual pipeline building our product
+pipeline:
+
+  # ---------------------------------------------------------------------------
+  # BUILD Monorepo
+  # ---------------------------------------------------------------------------
+
+  "docker build":
+    group: build-monorepo
+    image: docker:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - "docker build --compress -t ${DRONE_REPO,,}-monorepo ."
+    <<: *WHEN_BUILD_EVENT
+
+  "npm install":
+    group: install
+    image: ${DRONE_REPO,,}-monorepo
+    commands:
+      - node -v
+      - npm -v
+      - yarn --version
+      - npm install
+    <<: *WHEN_BUILD_EVENT
+
+  "bootstrap":
+    group: bootstrap
+    image: ${DRONE_REPO,,}-monorepo
+    commands:
+      - lerna bootstrap
+    <<: *WHEN_BUILD_EVENT
+
+  "create-react-app":
+    group: pre-check
+    image: ${DRONE_REPO,,}-monorepo
+    commands:
+      - yarn create-react-app my-app-ci
+    <<: *WHEN_BUILD_EVENT
+
+  # ---------------------------------------------------------------------------
+  # CHECK scaffolded project
+  # ---------------------------------------------------------------------------
+
+  "build (scaffolded project)":
+    group: check
+    image: ${DRONE_REPO,,}-monorepo
+    commands:
+      - cd my-app-ci
+      - yarn build
+    <<: *WHEN_BUILD_EVENT
+
+  # "test (scaffolded project)":
+  #   group: check
+  #   image: ${DRONE_REPO,,}-monorepo
+  #   commands:
+  #     - cd my-app-ci
+  #     - yarn test
+  #   <<: *WHEN_BUILD_EVENT
+
+# Long living services where the startup order does not matter (otherwise use detach: true)
+services:
+
+  # ---------------------------------------------------------------------------
+  # SERVICES
+  # ---------------------------------------------------------------------------
+
+  "env":
+    image: alpine
+    commands:
+      - "env | sort"
