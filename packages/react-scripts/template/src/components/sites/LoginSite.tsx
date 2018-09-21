@@ -10,7 +10,7 @@ import { CustomPrimaryButton } from "../ui/CustomPrimaryButton";
 import { Images } from "../util/Images";
 import { ui } from "../util/UIHelpers";
 
-type IProps = RouteComponentProps<{}> & {};
+type IProps = RouteComponentProps & {};
 interface IState {
     canSubmit: boolean;
     error: string;
