@@ -38,8 +38,8 @@ pipeline:
       - "docker build --compress -t ${DRONE_REPO,,}-monorepo ."
     <<: *WHEN_BUILD_EVENT
 
-  "bootstrap":
-    group: bootstrap
+  "npm install":
+    group: install
     image: ${DRONE_REPO,,}-monorepo
     commands:
       - node -v
@@ -48,11 +48,18 @@ pipeline:
       - npm install
     <<: *WHEN_BUILD_EVENT
 
-  "build":
+  "bootstrap":
+    group: bootstrap
+    image: ${DRONE_REPO,,}-monorepo
+    commands:
+      - lerna bootstrap
+    <<: *WHEN_BUILD_EVENT
+
+  "create-react-app":
     group: pre-check
     image: ${DRONE_REPO,,}-monorepo
     commands:
-      - yarn create-react-app
+      - yarn create-react-app my-app-ci
     <<: *WHEN_BUILD_EVENT
 
 # Long living services where the startup order does not matter (otherwise use detach: true)
