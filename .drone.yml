@@ -45,7 +45,7 @@ pipeline:
       - node -v
       - npm -v
       - yarn --version
-      - lerna bootstrap
+      - npm install
     <<: *WHEN_BUILD_EVENT
 
   "build":
