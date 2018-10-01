@@ -6,7 +6,7 @@ import { IAvailableI18nIds } from "./en";
 export type IDS = keyof IAvailableI18nIds;
 export const id = (i18nId: IDS) => i18nId;
 
-// constructor type helper 
+// constructor type helper
 type C<T> = new () => T;
 
 // proxy injectIntl through hoist-non-react-statics
