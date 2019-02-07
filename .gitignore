@@ -12,3 +12,5 @@ yarn-debug.log*
 yarn-error.log*
 /.changelog
 yarn.lock
+.npm/
+

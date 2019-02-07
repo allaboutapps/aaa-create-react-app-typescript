@@ -42,9 +42,7 @@ export default class extends Component {
     return (
       <div id="feature-generators">
         {this.state.users.map(user => (
-          <div key={user.id}>
-            {user.name}
-          </div>
+          <div key={user.id}>{user.name}</div>
         ))}
       </div>
     );

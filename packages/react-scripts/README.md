@@ -4,7 +4,7 @@
 
 `create-react-app my-app --scripts-version=aaa-react-scripts-ts` (the official create-react-app CLI tools must be installed globally before)
 
-This package includes scripts and configuration used by [Create React App](https://github.com/facebookincubator/create-react-app).<br>
+This package includes scripts and configuration used by [Create React App](https://github.com/facebook/create-react-app).<br>
 Please refer to its documentation:
 
 * [Getting Started](https://github.com/facebookincubator/create-react-app/blob/master/README.md#getting-started) – How to create a new app.
@@ -14,3 +14,4 @@ Please refer to its documentation:
 ### Build environment custom managed packages:
 * graphql-tag (webpack loader)
 * jest-transform-graphql
+

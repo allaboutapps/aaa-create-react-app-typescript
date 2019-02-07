@@ -79,7 +79,6 @@ fi
 if hash npm 2>/dev/null
 then
   npm i -g npm@latest
-  npm cache clean || npm cache verify
 fi
 
 # Bootstrap monorepo
@@ -87,7 +86,7 @@ yarn
 
 # Start local registry
 tmp_registry_log=`mktemp`
-nohup npx verdaccio@2.7.2 &>$tmp_registry_log &
+(cd && nohup npx verdaccio@3.8.2 -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
 
@@ -96,25 +95,34 @@ npm set registry "$custom_registry_url"
 yarn config set registry "$custom_registry_url"
 
 # Login so we can publish packages
-npx npm-cli-login@0.0.10 -u user -p password -e user@example.com -r "$custom_registry_url" --quotes
+(cd && npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r "$custom_registry_url")
 
 # Lint own code
 ./node_modules/.bin/eslint --max-warnings 0 packages/babel-preset-react-app/
+./node_modules/.bin/eslint --max-warnings 0 packages/confusing-browser-globals/
 ./node_modules/.bin/eslint --max-warnings 0 packages/create-react-app/
 ./node_modules/.bin/eslint --max-warnings 0 packages/eslint-config-react-app/
 ./node_modules/.bin/eslint --max-warnings 0 packages/react-dev-utils/
 ./node_modules/.bin/eslint --max-warnings 0 packages/react-scripts/
+
 cd packages/react-error-overlay/
 ./node_modules/.bin/eslint --max-warnings 0 src/
 yarn test
-
 if [ $APPVEYOR != 'True' ]; then
   # Flow started hanging on AppVeyor after we moved to Yarn Workspaces :-(
   yarn flow
 fi
-
 cd ../..
+
 cd packages/react-dev-utils/
+yarn test
+cd ../..
+
+cd packages/babel-plugin-named-asset-import/
+yarn test
+cd ../..
+
+cd packages/confusing-browser-globals/
 yarn test
 cd ../..
 
@@ -149,7 +157,7 @@ git clean -df
 
 # Install the app in a temporary location
 cd $temp_app_path
-npx create-react-app test-app --scripts-version=react-scripts-ts
+npx create-react-app test-app
 
 # TODO: verify we installed prerelease
 
@@ -211,19 +219,21 @@ function verify_module_scope {
   # Create stub json file
   echo "{}" >> sample.json
 
-  # Save App.tsx, we're going to modify it
-  cp src/App.tsx src/App.tsx.bak
+  # Save App.js, we're going to modify it
+  cp src/App.js src/App.js.bak
 
   # Add an out of scope import
-  echo "import sampleJson from '../sample'" | cat - src/App.tsx > src/App.tsx.temp && mv src/App.tsx.temp src/App.tsx
+  echo "import sampleJson from '../sample'" | cat - src/App.js > src/App.js.temp && mv src/App.js.temp src/App.js
 
   # Make sure the build fails
   yarn build; test $? -eq 1 || exit 1
   # TODO: check for error message
 
-  # Restore App.tsx
-  rm src/App.tsx
-  mv src/App.tsx.bak src/App.tsx
+  rm sample.json
+
+  # Restore App.js
+  rm src/App.js
+  mv src/App.js.bak src/App.js
 }
 
 # Enter the app directory
@@ -268,7 +278,7 @@ exists build/static/css/*.css
 exists build/static/media/*.svg
 exists build/favicon.ico
 
-# Run tests, overring the watch option to disable it.
+# Run tests, overriding the watch option to disable it.
 # `CI=true yarn test` won't work here because `yarn test` becomes just `jest`.
 # We should either teach Jest to respect CI env variable, or make
 # `scripts/test.js` survive ejection (right now it doesn't).
