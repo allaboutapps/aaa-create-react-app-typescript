@@ -59,7 +59,7 @@ export const crashWithFrames = (crash: ErrorRecord => void) => (
 };
 
 export function listenToRuntimeErrors(
-  crash: (ErrorRecord) => void,
+  crash: ErrorRecord => void,
   filename: string = '/static/js/bundle.js'
 ) {
   const crashWithFramesRunTime = crashWithFrames(crash);

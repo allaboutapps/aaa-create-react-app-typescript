@@ -1,9 +1,9 @@
 # `aaa-react-scripts-ts` [![npm version](https://badge.fury.io/js/aaa-react-scripts-ts.svg)](https://badge.fury.io/js/aaa-react-scripts-ts)
 
 ## Features
-* Fully configured [Visual Studio code](https://code.visualstudio.com/) environment (debugging, recommended extensions, tasks).   
-* Allows to extend webpack configuration through a `webpack.js` inside the project without the need to eject.   
 
+- Fully configured [Visual Studio code](https://code.visualstudio.com/) environment (debugging, recommended extensions, tasks).
+- Allows to extend webpack configuration through a `webpack.js` inside the project without the need to eject.
 
 Create React apps with no build configuration.
 

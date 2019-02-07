@@ -1,66 +1,75 @@
 # aaa-react-scripts-ts
 
-Customized react template project generator for [at all about apps](https://allaboutapps.at) using the current default settings.  
+Customized react template project generator for [at all about apps](https://allaboutapps.at) using the current default settings.
 
 ## Typical Dependencies at all about apps
 
 Anything not flagged as **[optional]** is typically included in a newly generated app.
 
 ### General
-* [`react`](https://npmjs.org/package/react) + [`@types/react`](https://npmjs.org/package/@types/react)
-* [`react-dom`](https://npmjs.org/package/react-dom) + [`@types/react-dom`](https://npmjs.org/package/@types/react-dom)
+
+- [`react`](https://npmjs.org/package/react) + [`@types/react`](https://npmjs.org/package/@types/react)
+- [`react-dom`](https://npmjs.org/package/react-dom) + [`@types/react-dom`](https://npmjs.org/package/@types/react-dom)
 
 ### UI
-* [`material-ui`](https://npmjs.org/package/material-ui) + [`@types/material-ui`](https://npmjs.org/package/@types/material-ui)
-* [`react-tap-event-plugin`](https://npmjs.org/package/react-tap-event-plugin) + [`@types/react-tap-event-plugin`](https://npmjs.org/package/@types/react-tap-event-plugin)
-  * to make `onTouchTap` click-handler available
+
+- [`material-ui`](https://npmjs.org/package/material-ui) + [`@types/material-ui`](https://npmjs.org/package/@types/material-ui)
+- [`react-tap-event-plugin`](https://npmjs.org/package/react-tap-event-plugin) + [`@types/react-tap-event-plugin`](https://npmjs.org/package/@types/react-tap-event-plugin)
+  - to make `onTouchTap` click-handler available
 
 ### i18n
-* [`react-intl`](https://npmjs.org/package/react-intl)
-  * A custom `@types/react-intl` is supplied in generated projects that introduces the generic IDS to check used i18n keys during compile time
-* [`intl`](https://npmjs.org/package/intl)
-  * Polyfill, use `require.ensure`
+
+- [`react-intl`](https://npmjs.org/package/react-intl)
+  - A custom `@types/react-intl` is supplied in generated projects that introduces the generic IDS to check used i18n keys during compile time
+- [`intl`](https://npmjs.org/package/intl)
+  - Polyfill, use `require.ensure`
 
 ### Styling and Animations
-* [`styled-components`](https://npmjs.org/package/styled-components)
-* **[optional]** [`react-swipeable-views`](https://npmjs.org/package/react-swipeable-views) + [`@types/react-swipeable-views`](https://npmjs.org/package/@types/react-swipeable-views)
-* [`react-addons-css-transition-group`](https://npmjs.org/package/react-addons-css-transition-group) + [`@types/react-addons-css-transition-group`](https://npmjs.org/package/@types/react-addons-css-transition-group)
-* [`react-animations`](https://npmjs.org/package/react-animations)
-* **[optional]** [`react-router-transition`](https://npmjs.org/package/react-router-transition)
+
+- [`styled-components`](https://npmjs.org/package/styled-components)
+- **[optional]** [`react-swipeable-views`](https://npmjs.org/package/react-swipeable-views) + [`@types/react-swipeable-views`](https://npmjs.org/package/@types/react-swipeable-views)
+- [`react-addons-css-transition-group`](https://npmjs.org/package/react-addons-css-transition-group) + [`@types/react-addons-css-transition-group`](https://npmjs.org/package/@types/react-addons-css-transition-group)
+- [`react-animations`](https://npmjs.org/package/react-animations)
+- **[optional]** [`react-router-transition`](https://npmjs.org/package/react-router-transition)
 
 ### Util
-* [`@types/node`](https://npmjs.org/package/@types/node)
-* **[optional]** [`lodash`](https://npmjs.org/package/lodash) + [`@types/lodash`](https://npmjs.org/package/@types/lodash). Typically our favourite utility-belt (alá std-lib)
-* [`hoist-non-react-statics`](https://npmjs.org/package/hoist-non-react-statics)
-  * If you write your own Higher Order Components / experimental component decorators
-* [`@types/webpack-env`](https://npmjs.org/package/@types/webpack-env)
-  * To make `require.ensure` overloading available (used for code splitting)
-* [`@types/jest`](https://npmjs.org/package/@types/jest)
+
+- [`@types/node`](https://npmjs.org/package/@types/node)
+- **[optional]** [`lodash`](https://npmjs.org/package/lodash) + [`@types/lodash`](https://npmjs.org/package/@types/lodash). Typically our favourite utility-belt (alá std-lib)
+- [`hoist-non-react-statics`](https://npmjs.org/package/hoist-non-react-statics)
+  - If you write your own Higher Order Components / experimental component decorators
+- [`@types/webpack-env`](https://npmjs.org/package/@types/webpack-env)
+  - To make `require.ensure` overloading available (used for code splitting)
+- [`@types/jest`](https://npmjs.org/package/@types/jest)
 
 ### **[optional]** Form validation
-* [`formsy-react`](https://npmjs.org/package/formsy-react)
-* [`formsy-material-ui`](https://npmjs.org/package/formsy-material-ui)
+
+- [`formsy-react`](https://npmjs.org/package/formsy-react)
+- [`formsy-material-ui`](https://npmjs.org/package/formsy-material-ui)
 
 ### **[optional]** State management
-* [`mobx`](https://npmjs.org/package/mobx)
-* [`mobx-react`](https://npmjs.org/package/mobx-react)
-* Storage
-  * [`mobx-persist`](https://npmjs.org/package/mobx-persist)
-  * [`localforage`](https://npmjs.org/package/localforage) + [`@types/localforage`](https://npmjs.org/package/@types/localforage)
-    * Use as AsyncStorage Adapter for mobx-persist
+
+- [`mobx`](https://npmjs.org/package/mobx)
+- [`mobx-react`](https://npmjs.org/package/mobx-react)
+- Storage
+  - [`mobx-persist`](https://npmjs.org/package/mobx-persist)
+  - [`localforage`](https://npmjs.org/package/localforage) + [`@types/localforage`](https://npmjs.org/package/@types/localforage)
+    - Use as AsyncStorage Adapter for mobx-persist
 
 ### **[optional]** Routing
-* [`react-router`](https://npmjs.org/package/react-router) + [`@types/react-router`](https://npmjs.org/package/@types/react-router)
-  * Depending on the project your can also use [`junctions`](https://github.com/jamesknelson/junctions) as an alternative or switch to fully serverside rendering through [`next.js`](https://github.com/zeit/next.js/).
+
+- [`react-router`](https://npmjs.org/package/react-router) + [`@types/react-router`](https://npmjs.org/package/@types/react-router)
+  - Depending on the project your can also use [`junctions`](https://github.com/jamesknelson/junctions) as an alternative or switch to fully serverside rendering through [`next.js`](https://github.com/zeit/next.js/).
 
 ### **[optional]** GraphQL
-* [`apollo-client`](https://npmjs.org/package/apollo-client)
-* [`graphql-tag`](https://npmjs.org/package/graphql-tag) (already used as devDependency in the webpack build chain, install you own version too if needed!)
-* [`react-apollo`](https://npmjs.org/package/react-apollo)
-* DevDependencies
-  * `@playlyfe/gql` + [GraphQL for VSCode](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
-  * `apollo-codegen`
-  * `jest-transform-graphql` (already installed in test chain)
+
+- [`apollo-client`](https://npmjs.org/package/apollo-client)
+- [`graphql-tag`](https://npmjs.org/package/graphql-tag) (already used as devDependency in the webpack build chain, install you own version too if needed!)
+- [`react-apollo`](https://npmjs.org/package/react-apollo)
+- DevDependencies
+  - `@playlyfe/gql` + [GraphQL for VSCode](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
+  - `apollo-codegen`
+  - `jest-transform-graphql` (already installed in test chain)
 
 ## Original Readme:
 
@@ -173,8 +182,8 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 Create React App is divided into two packages:
 
-* `create-react-app` is a global command-line utility that you use to create new projects.
-* `react-scripts` is a development dependency in the generated projects (including this one).
+- `create-react-app` is a global command-line utility that you use to create new projects.
+- `react-scripts` is a development dependency in the generated projects (including this one).
 
 You almost never need to update `create-react-app` itself: it delegates all the setup to `react-scripts`.
 
@@ -213,8 +222,8 @@ my-app/
 
 For the project to build, **these files must exist with exact filenames**:
 
-* `public/index.html` is the page template;
-* `src/index.js` is the JavaScript entry point.
+- `public/index.html` is the page template;
+- `src/index.js` is the JavaScript entry point.
 
 You can delete or rename the other files.
 

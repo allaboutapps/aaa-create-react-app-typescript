@@ -75,7 +75,7 @@ function tryGitInit(appPath) {
   }
 }
 
-module.exports = function (
+module.exports = function(
   appPath,
   appName,
   verbose,
@@ -100,11 +100,11 @@ module.exports = function (
     build: 'aaa-react-scripts-ts build',
     test: 'aaa-react-scripts-ts test --env=jsdom',
     eject: 'aaa-react-scripts-ts eject',
-    "lint": "tslint --project tsconfig.json -c tslint.json",
-    "gql": "npm run gql:introspect && npm run gql:types",
-    "gql:types": "cd ./graphql/schema && ./_generate.sh",
-    "gql:introspect": "cd ./graphql/schema && node _introspect.js",
-    "gql:watch": "npm-watch"
+    lint: 'tslint --project tsconfig.json -c tslint.json',
+    gql: 'npm run gql:introspect && npm run gql:types',
+    'gql:types': 'cd ./graphql/schema && ./_generate.sh',
+    'gql:introspect': 'cd ./graphql/schema && node _introspect.js',
+    'gql:watch': 'npm-watch',
   };
 
   // Setup the eslint config
