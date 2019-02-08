@@ -443,7 +443,7 @@ To deploy your built project directly with Now CLI in your terminal, without any
 
 3. Run `now --name your-project-name` from within the build directory. You will be given a **now.sh** URL as a response as your build is deployed, similar to the following: https://my-cra-project-4rx7b16z3.now.sh/
 
-  Click or paste the deployment URL into your browser when the build is complete and you will see your deployed app.
+Click or paste the deployment URL into your browser when the build is complete and you will see your deployed app.
 
 For more information on deploying React applications with Now, including automatically building your application fresh in the cloud, setting up routes to rewrite all paths to the index.html file, and setting up caching headers for speed, see [the ZEIT Guide for Deploying a React app with Create React App](https://zeit.co/guides/deploying-react-with-now-cra/).
 

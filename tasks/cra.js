@@ -46,8 +46,8 @@ console.log();
 
 // Temporarily overwrite package.json of all packages in monorepo
 // to point to each other using absolute file:/ URLs.
-
 /* [GCHEN] Disable commit check for now
+
 const gitStatus = cp.execSync(`git status --porcelain`).toString();
 
 if (gitStatus.trim() !== '') {
@@ -58,6 +58,7 @@ if (gitStatus.trim() !== '') {
   console.log();
   process.exit(1);
 }
+
 */
 
 const rootDir = path.join(__dirname, '..');
