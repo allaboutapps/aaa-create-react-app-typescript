@@ -38,9 +38,6 @@ const webpack = require('webpack');
 const bfj = require('bfj');
 const configFactory = require('../config/webpack.config');
 const paths = require('../config/paths');
-const config = require(paths.appWebpackConfig)(
-  require('../config/webpack.config.prod')
-);
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printHostingInstructions = require('react-dev-utils/printHostingInstructions');
