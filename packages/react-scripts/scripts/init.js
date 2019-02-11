@@ -113,10 +113,17 @@ module.exports = function(
     'gql:watch': 'npm-watch',
   };
 
+  // ######################
+  // AAA-MODIFICATION START
+  // ######################
+  // we want to use .eslintrc instead!
   // Setup the eslint config
-  appPackage.eslintConfig = {
-    extends: 'react-app',
-  };
+  // appPackage.eslintConfig = {
+  //   extends: 'react-app',
+  // };
+  // ######################
+  // AAA-MODIFICATION END
+  // ######################
 
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
