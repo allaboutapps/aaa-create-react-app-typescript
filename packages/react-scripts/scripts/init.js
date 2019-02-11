@@ -92,7 +92,13 @@ module.exports = function(
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
 
-  const useTypeScript = appPackage.dependencies['typescript'] != null;
+  // ######################
+  // AAA-MODIFICATION START
+  // ######################
+  const useTypeScript = true; // we will always use typescript!
+  // ######################
+  // AAA-MODIFICATION END
+  // ######################
 
   // Setup the script rules
   appPackage.scripts = {
