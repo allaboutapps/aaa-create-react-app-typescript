@@ -2,26 +2,20 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import registerServiceWorker from "./registerServiceWorker";
 
-// TLDR: Safari -.-
-// polyfill intl for browsers which have not implemented this api yet
-// will only be injected if Intl is not provided by the browser.
-// see https://github.com/andyearnshaw/Intl.js/#intljs-and-browserifywebpack
-if (!global.Intl) {
-    require.ensure([
-        "intl",
-        "intl/locale-data/jsonp/en.js",
-        "intl/locale-data/jsonp/de.js"
-    ], (_require) => {
-        _require("intl");
-        _require("intl/locale-data/jsonp/en.js");
-        _require("intl/locale-data/jsonp/de.js");
-        attach();
-    });
-} else {
-    attach();
-}
-
-function attach() {
+(async () => {
+    
+    // TLDR: Safari -.-
+    // polyfill intl for browsers which have not implemented this api yet
+    // will only be injected if Intl is not provided by the browser.
+    // see https://github.com/andyearnshaw/Intl.js/#intljs-and-browserifywebpack
+    if (!global.Intl) {
+        await Promise.all([
+            import("intl" as any),
+            import("intl/locale-data/jsonp/en.js" as any),
+            import("intl/locale-data/jsonp/de.js" as any)
+        ]);
+    }
+    
     // Add available formattersData for this application
     // (decide which formatters are available for date-, number-, ...)
     const RI = require("react-intl");
@@ -41,4 +35,5 @@ function attach() {
         document.getElementById("root")
     );
     registerServiceWorker();
-}
+
+})();
