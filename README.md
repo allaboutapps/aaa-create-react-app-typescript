@@ -2,6 +2,12 @@
 
 > A customized react-scripts fork for [allaboutapps](https://allaboutapps.at)
 
+```sh
+node -v
+# v10.x.x
+yarn create react-app --scripts-version=aaa-react-scripts-ts
+```
+
 This repo exists to patch some things in `packages/react-scripts` , however we try to track the upstream [create-react-app](https://github.com/facebook/create-react-app) repository as close as possible here (~half-yearly updates).
 
 ## Changes
@@ -23,3 +29,35 @@ Format: `<MAJOR>.<MINOR>.<PATCH>+cra-v<CRAMAJOR>.<CRAMINOR>.<CRAPATCH>`
 E.g.: `3.0.0+cra-v2.1.3`.
 
 Major CRA updates will also result in a bump of `aaa-react-scripts-ts`.
+
+### Publishing
+
+```sh
+
+pwd
+# ~/aaa-create-react-app-typescript
+
+# Ensure everything builds in the CI as expected, you can also test locally:
+yarn
+lerna bootstrap
+
+# also test locally
+yarn create-react-app my-app-xxx
+cd my-app-xxx
+
+# Everything works as expected?
+
+# create a new git tag - e.g.
+git tag -a 3.0.0+cra-v2.1.5 -m "aaa-react-scripts-ts@v3.0.0 forked at create-react-app@v2.1.5"
+
+git push origin-atl 3.0.0+cra-v2.1.5
+git push origin-github 3.0.0+cra-v2.1.5
+
+cd packages/react-scripts
+
+nvmrc # ensure you use the right npm registry!
+
+# finally run publish!
+npm publish
+
+```
