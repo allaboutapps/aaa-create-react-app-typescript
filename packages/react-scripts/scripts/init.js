@@ -106,11 +106,13 @@ module.exports = function(
     build: 'aaa-react-scripts-ts build',
     test: 'aaa-react-scripts-ts test --env=jsdom',
     eject: 'aaa-react-scripts-ts eject',
-    lint: 'tslint --project tsconfig.json -c tslint.json',
-    gql: 'npm run gql:introspect && npm run gql:types',
-    'gql:types': 'cd ./graphql/schema && ./_generate.sh',
-    'gql:introspect': 'cd ./graphql/schema && node _introspect.js',
-    'gql:watch': 'npm-watch',
+    apollo: 'apollo',
+    gql: 'yarn gql:authorization && yarn gql:introspect && yarn gql:types',
+    'gql:authorization': 'node graphql/getAuthorization.js',
+    'gql:introspect':
+      'apollo service:download graphql/schema.json --endpoint https://allaboutapps-backend-dev.allaboutapps.at/cms-api/graphql --header="$(cat graphql/.authorization)"',
+    'gql:types':
+      'apollo client:codegen src/IGQLQueries.d.ts --target typescript --localSchemaFile "graphql/schema.json" --includes "src/**/*.gql" --outputFlat',
   };
 
   // ######################

@@ -3,7 +3,7 @@
 #############
 
 # Builder image uses node/yarn (on debian jessie) to create production build of frontend
-FROM node:8 as builder
+FROM node:10 as builder
 
 # Yes no maybe. This is strange. Although all default shells are bash and bash has been set as the shell for yarn/npm to use,
 # it still runs everything as /bin/sh for some weird reason. Let's make sure it doesn't. Naughty yarn.
@@ -14,7 +14,7 @@ RUN rm /bin/sh \
 WORKDIR /app
 
 # https://github.com/nodejs/docker-node/issues/661
-# Remove the version of yarn that is coming with node:8 & Install latest yarn
+# Remove the version of yarn that is coming with node:10 & Install latest yarn
 RUN rm -f /usr/local/bin/yarn && \
     curl -o- -L https://yarnpkg.com/install.sh | bash && \
     chmod +x ~/.yarn/bin/yarn && \
