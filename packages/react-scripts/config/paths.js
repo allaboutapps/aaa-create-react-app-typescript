@@ -90,6 +90,7 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
+  appWebpackConfig: resolveApp('webpack.js'),
 };
 
 // @remove-on-eject-begin
@@ -117,6 +118,7 @@ module.exports = {
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
   appTypeDeclarations: resolveApp('src/react-app-env.d.ts'),
   ownTypeDeclarations: resolveOwn('lib/react-app.d.ts'),
+  appWebpackConfig: resolveApp('webpack.js'),
 };
 
 const ownPackageJson = require('../package.json');
@@ -151,6 +153,7 @@ if (
     ownNodeModules: resolveOwn('node_modules'),
     appTypeDeclarations: resolveOwn('template/src/react-app-env.d.ts'),
     ownTypeDeclarations: resolveOwn('lib/react-app.d.ts'),
+    appWebpackConfig: resolveApp('webpack.js'),
   };
 }
 // @remove-on-eject-end

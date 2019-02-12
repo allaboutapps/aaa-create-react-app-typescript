@@ -64,8 +64,11 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 const argv = process.argv.slice(2);
 const writeStatsJson = argv.indexOf('--stats') !== -1;
 
-// Generate configuration
-const config = configFactory('production');
+// Generate configuration (AAA allow overwrite)
+const config = require(paths.appWebpackConfig)(
+  configFactory('production'),
+  true
+);
 
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.

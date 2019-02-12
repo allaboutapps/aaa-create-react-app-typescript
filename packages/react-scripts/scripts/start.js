@@ -91,7 +91,11 @@ checkBrowsers(paths.appPath, isInteractive)
       // We have not found a port.
       return;
     }
-    const config = configFactory('development');
+    // Generate configuration (AAA allow overwrite)
+    const config = require(paths.appWebpackConfig)(
+      configFactory('development'),
+      false
+    );
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson).name;
     const useTypeScript = fs.existsSync(paths.appTsConfig);
