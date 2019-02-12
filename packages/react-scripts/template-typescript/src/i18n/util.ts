@@ -32,7 +32,7 @@ export const FormattedTime = RI.FormattedTime;
 export type InjectedIntl = RI.InjectedIntl<IDS>;
 export type InjectedIntlProps = RI.InjectedIntlProps<IDS>;
 
-export type TranslatorFunction = (stringId: IDS, values?: Object) => string;
+export type TranslatorFunction = (stringId: IDS, values?: any) => string;
 
 /** * Given an InjectedIntl object return a function that can be used for getting
  * internationalized string constants with less typing.
@@ -42,7 +42,7 @@ export type TranslatorFunction = (stringId: IDS, values?: Object) => string;
  */
 export function bindStr(intl?: RI.InjectedIntl<IDS>) {
     if (intl) {
-        return (stringId: IDS, values?: Object) => intl.formatMessage({ id: stringId }, values);
+        return (stringId: IDS, values?: any) => intl.formatMessage({ id: stringId }, values);
     } else {
         return (stringId: IDS) => stringId;
     }

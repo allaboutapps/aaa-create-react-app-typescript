@@ -1,0 +1,142 @@
+// ----------------------------------------------------------------------------
+//    ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION    
+// ----------------------------------------------------------------------------
+// tslint is dead and will be fully replace by eslint!
+// We currently automatically apply this tslint configuration by running an 
+// extra tslint instance through eslint (see configuration in .eslintrc)
+// However, this configuration file will definately go silent in the future!
+// See https://github.com/typescript-eslint/typescript-eslint
+// ----------------------------------------------------------------------------
+//    ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION    
+// ----------------------------------------------------------------------------
+
+{
+    "extends": [
+      "tslint-react",
+      "tslint-microsoft-contrib"
+    ],
+    "rules": {
+      "align": [ // Disabled alignment check of function arguments, forces loads of unnecessary newlines/extra spacing
+        true,
+        "parameters",
+        "statements",
+        "members",
+        "elements"
+      ],
+      "await-promise": false, // This would actually be nice to have, but doesn't appear to work properly with Bluebird promises somehow
+      "chai-vague-errors": false, // Forces an explicit error message to be passed to every chai check, not that useful imho
+      "comment-format": [ // Requires all comments to be properly formatted and start with a space after the `//`
+        true,
+        "check-space"
+      ],
+      "completed-docs": false, // Disable requirement to add documentation to everything
+      "export-name": false, // Requires the export name to match the containing file's name
+      "import-name": false, // Requires the import name to match the containing file's name
+      "match-default-export-name": false, // Disables requirement of names of imports equaling the default export's name
+      "max-func-body-length": [ // Somewhat based on personal taste, but 120 seems to be a good starting point. can be disabled with tslint-comments if really needed
+        true,
+        120
+      ],
+      "max-line-length": [ // Same as with `max-func-body-length`, based on personal taste, although everything > 180 chars requires quite some scrolling on regular screens
+        true,
+        180
+      ],
+      "member-access": [ // Defines which/where member access modifiers have to be defined in classes. `no-public` is required, otherwise tslint-autofix automatically adds `public` before all REST decorators
+        true,
+        "no-public"
+      ],
+      "missing-jsdoc": false, // Microsoft requires all files to have a root level jsdoc comment, explaining the file's functionality
+      "mocha-no-side-effect-code": false, // Needs to be checked out - might actually have to be changed throught the project
+      "no-any": false, // Sometimes, any is nice to have. Try to use it as little as possible, but allow it where needed
+      "no-backbone-get-set-outside-model": false, // Weird bug (?) with some framework apparently, tslint thinks the `REST.get()` decorator is some incorrect getter call
+      "no-default-export": false, // Somewhat based on personal taste, but default exports are still useful/convenient to have sometimes
+      "no-empty-interface": false, // Sequelize models usually have empty interfaces (especially the `IModel` interfaces), allow those
+      "no-floating-promises": [ // Makes sure no promises are left floating/unhandled (at least not without specifically allowing them to be)
+        true,
+        "Bluebird"
+      ],
+      "no-function-expression": false, // Various situations where `function()` syntax is appropriate/needed (especially in mocha tests)
+      "no-http-string": false, // Microsoft disallows any string (no matter if comment, parameter or regular string) that starts with http://
+      "no-implicit-dependencies": [ // Includes devDependencies in dependency lookup (required for tests)
+        true,
+        "dev"
+      ],
+      "no-null-keyword": false,
+      "newline-per-chained-call": false,
+      "no-invalid-this": false, // Allow `this` access outside of class bodies, required for Sequelize models
+      "no-redundant-jsdoc": false, // Allow for DocumentThis JSDoc comments, still useful for extra documentation in VSCode's autocomplete
+      "no-relative-imports": false, // Relative imports are used throughout the project (e.g. for models/schemas), thus required to be allowed
+      "no-suspicious-comment": false, // Might actually be interesting if we can make the build not fail on tslint warnings, but only errors
+      "no-this-assignment": false, // Allow for `this` to be assigned to a differen variable (e.g. used in Sequelize models)
+      "no-unsafe-any": false, // Enables use of `any` as dropin for all currently untyped variables (otherwise `(<any>something).test` would be forbidden)
+      "prefer-as-cast": false, // Forces all casts to use `{} as any` syntax, we're allowing both
+      "prefer-type-cast": false, // Forces all casts to use `<any>{}` syntax, we're allowing both
+      "quotemark": [ // Enforce double quotes for strings, Microsoft actually recommends single quotes
+        true,
+        "double"
+      ],
+      // "strict-boolean-expressions": [ // Allow checks like `if (device)` (should be replaced with `!_.isNil(device)`, but currently in many places throughout the code)
+      //   true,
+      //   "allow-null-union",
+      //   "allow-undefined-union",
+      //   "allow-string",
+      //   "allow-number"
+      // ],
+      "typedef": [ // Require type definition in some places (especially function parameters), but allow implizit types in others (e.g. variable declarations)
+        true,
+        "member-variable-declaration",
+        "parameter",
+        "property-declaration"
+      ],
+      "underscore-consistent-invocation": false, // Complains about some sorts of lodash invocations, unnecessary
+      "variable-name": false, // Requires variables to either be lower(Camel)Case or UPPER_CASE
+      // =========================
+      // == Frontend only rules ==
+      // =========================
+      "no-submodule-imports": false, // Allow relative imports.
+      "no-import-side-effect": [ // Allow imports of .css files.
+        true,
+        {
+          "ignore-module": "(\\.css)$"
+        }
+      ],
+      "use-simple-attributes": false,
+      "no-single-line-block-comment": false, // Allow single line JSX comments in the form "{/* My comment. */}".
+      "no-multiline-string": false, // Allow multiline strings for styled components.
+      "jsx-no-multiline-js": false, // Allow multiline jsx statements (for example a style block over multiple lines)
+      "jsx-no-lambda": false, // Allow lambda functions even they are best practice because this would be a huge amount of additional work.
+      "jsx-boolean-value": [ // Enforce that attributes that should just be true are written as "attr" and not as "attr={true}".
+        true,
+        "never"
+      ],
+      "no-require-imports": false, // require() needed for *.gql files.
+      "no-var-requires": false, // Allow code in the form of "const MyRequired: any = require("toRequire.abc");".
+      // There is no reason why final switch block should not end with a break.
+      // Maybe if more switch blocks are added the break of the previous block gets forgotten.
+      // This is bad.
+      "switch-final-break": false,
+      "no-increment-decrement": false, // Allow the ++ and -- operators.
+      "react-this-binding-issue": false, // Allow lambda expressions.
+      "no-console": false, // Just let me debug whithout everything exploding.
+      "strict-boolean-expressions": false,
+      "function-name": false,
+      "whitespace": [
+        true,
+        "check-branch",
+        "check-decl",
+        "check-module",
+        "check-operator",
+        "check-separator",
+        "check-type",
+        "check-typecast"
+      ]
+    },
+    "linterOptions": {
+      "exclude": [
+        "config/**/*.js",
+        "node_modules/**/*.ts",
+        "coverage/lcov-report/*.js"
+      ]
+    }
+  }
+  

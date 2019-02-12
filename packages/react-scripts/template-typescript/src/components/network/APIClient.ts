@@ -23,7 +23,7 @@ const options: IAPIClientOptions = {
 };
 
 class MyAPIClient {
-    private apiClient: APIClient;
+    private readonly apiClient: APIClient;
 
     constructor() {
         this.apiClient = new APIClient(options);

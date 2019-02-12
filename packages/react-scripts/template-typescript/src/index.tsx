@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 
+// tslint:disable-next-line:no-floating-promises
 (async () => {
-    
+
     // TLDR: Safari -.-
     // polyfill intl for browsers which have not implemented this api yet
     // will only be injected if Intl is not provided by the browser.
@@ -15,7 +16,7 @@ import * as serviceWorker from './serviceWorker';
             import("intl/locale-data/jsonp/de.js" as any)
         ]);
     }
-    
+
     // Add available formattersData for this application
     // (decide which formatters are available for date-, number-, ...)
     const RI = require("react-intl");
@@ -34,7 +35,7 @@ import * as serviceWorker from './serviceWorker';
         <App />,
         document.getElementById("root")
     );
-    
+
     // If you want your app to work offline and load faster, you can change
     // unregister() to register() below. Note this comes with some pitfalls.
     // Learn more about service workers: http://bit.ly/CRA-PWA
