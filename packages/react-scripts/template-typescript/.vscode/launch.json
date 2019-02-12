@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Note that you may need to fully close chrome and restart it through this
+            // so we are able to start + attach the debugger
+            "name": "Launch Chrome against localhost, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}/src",
+            "sourceMapPathOverrides": {
+                "webpack:///./src/*": "${webRoot}/*"
+            },
+            "skipFiles": [
+                "bundle.js" // we don't wanna debug 3rd party libs
+            ],
+            "runtimeArgs": [
+                "-incognito"
+            ]
+        }
+    ]
+}

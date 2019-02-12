@@ -107,10 +107,9 @@ module.exports = function(
     test: 'aaa-react-scripts-ts test --env=jsdom',
     eject: 'aaa-react-scripts-ts eject',
     apollo: 'apollo',
-    gql: 'yarn gql:authorization && yarn gql:introspect && yarn gql:types',
-    'gql:authorization': 'node graphql/getAuthorization.js',
-    'gql:introspect':
-      'apollo service:download graphql/schema.json --endpoint https://allaboutapps-backend-dev.allaboutapps.at/cms-api/graphql --header="$(cat graphql/.authorization)"',
+    gql: 'yarn gql:auth && yarn gql:introspect && yarn gql:types',
+    'gql:auth': 'node graphql/getAuthorization.js',
+    'gql:introspect': 'apollo service:download graphql/schema.json',
     'gql:types':
       'apollo client:codegen src/IGQLQueries.d.ts --target typescript --localSchemaFile "graphql/schema.json" --includes "src/**/*.gql" --outputFlat',
   };

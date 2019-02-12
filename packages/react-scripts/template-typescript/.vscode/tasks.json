@@ -1,0 +1,43 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "isBuildCommand": true,
+            "taskName": "tsc",
+            "command": "./node_modules/.bin/tsc", // IMPORTANT: use the version in the workspace to trigger builds!
+            "isShellCommand": true,
+            "args": [
+                "-w",
+                "-p",
+                "."
+            ],
+            "showOutput": "silent",
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch"
+        },
+        {
+            "taskName": "yarn start",
+            "command": "yarn",
+            "isShellCommand": true,
+            "args": [
+                "start"
+            ],
+            "echoCommand": true,
+            "showOutput": "silent",
+            "isBackground": true
+        },
+        {
+            "taskName": "yarn build",
+            "command": "yarn",
+            "isShellCommand": true,
+            "args": [
+                "build"
+            ],
+            "echoCommand": true,
+            "showOutput": "silent",
+            "isBackground": false
+        }
+    ]
+}
