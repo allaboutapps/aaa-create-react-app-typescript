@@ -27,7 +27,7 @@ Starting with `aaa-react-scripts-ts@v3` which is based on `react-scripts@v2` we 
 
 Format: `<MAJOR>.<MINOR>.<PATCH>+cra-v<CRAMAJOR>.<CRAMINOR>.<CRAPATCH>`
 
-E.g.: `3.0.0+cra-v2.1.3`.
+E.g.: `3.0.1+cra-v2.1.3`.
 
 Major CRA updates will also result in a bump of `aaa-react-scripts-ts`.
 
@@ -48,11 +48,15 @@ cd my-app-xxx
 
 # Everything works as expected?
 
-# create a new git tag - e.g.
-git tag -a 3.0.0+cra-v2.1.5 -m "aaa-react-scripts-ts@v3.0.0 forked at create-react-app@v2.1.5"
+# ensure the version in aaa-react-script package.json is updated as expected:
+cat packages/react-scripts/package.json | grep version
+# "version": "3.0.1+cra-v2.1.5",
 
-git push origin-atl 3.0.0+cra-v2.1.5
-git push origin-github 3.0.0+cra-v2.1.5
+# create a new git tag - e.g.
+git tag -a v3.0.1-cra-v2.1.5 -m "aaa-react-scripts-ts@v3.0.1 forked at create-react-app@v2.1.5"
+
+git push origin-atl v3.0.1-cra-v2.1.5
+git push origin-github v3.0.1-cra-v2.1.5
 
 cd packages/react-scripts
 
