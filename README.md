@@ -5,7 +5,7 @@
 ```sh
 node -v
 # v10.x.x
-yarn create react-app --scripts-version=aaa-react-scripts-ts
+yarn create react-app my-app --scripts-version=aaa-react-scripts-ts
 ```
 
 This repo exists to patch some things in `packages/react-scripts` , however we try to track the upstream [create-react-app](https://github.com/facebook/create-react-app) repository as close as possible here (~half-yearly updates).
@@ -16,9 +16,10 @@ This repo exists to patch some things in `packages/react-scripts` , however we t
 - TypeScript is our language of choice, any projects are scaffolded as if the `--typescript` option was given
 - GraphQL / Apollo webpack/scripts support
 - Easy overwrite of webpack configurations through a local `webpack.js` file in the project
-- Automatically installs compatible versions of popular libraries within our organization, e.g.
+- Automatically installs compatible versions of popular libraries within our organization
 - Support for compile-time safe i18n through customized typings and utils in the projects
 - Sample Login-Page in the frontend code
+- `eslintrc` is overwritable and still coming with full tslint support.
 
 ## Semver
 

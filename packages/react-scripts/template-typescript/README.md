@@ -1,8 +1,8 @@
 # aaa-react-scripts-ts
 
-Customized react template project generator for [at all about apps](https://allaboutapps.at) using the current default settings.
+This project was bootstrapped through `yarn create react-app my-app --scripts-version=aaa-react-scripts-ts`, a customized react template project generator for [at all about apps](https://allaboutapps.at).
 
-## Typical additional dependencies at all about apps
+## Additional dependencies
 
 - [`material-ui`](https://npmjs.org/package/material-ui)
 - [`react-intl`](https://npmjs.org/package/react-intl)
@@ -16,9 +16,8 @@ Customized react template project generator for [at all about apps](https://alla
 - [`react-router`](https://npmjs.org/package/react-router)
 - [`apollo-client`](https://npmjs.org/package/apollo-client) + [`graphql-tag`](https://npmjs.org/package/graphql-tag) + [`apollo-cli`](https://www.npmjs.com/package/apollo)
 
-## Original readmes
+## Original READMEs
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+[Create React App](https://github.com/facebookincubator/create-react-app).
 
-Below you will find some information on how to perform common tasks.
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+The most recent version of the Create React App guides can be found [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
