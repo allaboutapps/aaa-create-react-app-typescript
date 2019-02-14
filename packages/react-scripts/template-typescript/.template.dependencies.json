@@ -7,7 +7,7 @@
         "apollo-link-context": "^1.0.14",
         "apollo-link-http": "^1.5.11",
         "formsy-react": "^1.1.5",
-        "graphql": "14.0.2",
+        "graphql": "^14.0.2",
         "history": "^4.7.2",
         "hoist-non-react-statics": "^3.3.0",
         "intl": "^1.2.5",
