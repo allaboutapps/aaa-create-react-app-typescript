@@ -1,0 +1,100 @@
+# -----------------------------------------------------------------------------
+# SETTINGS
+# -----------------------------------------------------------------------------
+
+# Drone matrix: Additional ENV vars for substitution - http://docs.drone.io/matrix-builds/
+# Will be evaluated BEFORE the YAML is parsed, ONLY strings allowed, NO substitutions ${XXX} here.
+
+matrix:
+  include:
+    - BUILD_ENV: dev
+      REACT_APP_API_BASE_URL: https://your-public-url-dev.example.com
+      REACT_APP_DEPLOYMENT_ENV: dev:optimized
+      REACT_APP_BASE_NAME: /cms
+      PUBLIC_URL: https://your-public-url-dev.example.com/cms
+      BUILD_WHEN_BRANCH_IS: ""
+      DISCARD_WHEN_BRANCH_IS: "[ master, staging ]"
+
+    # - BUILD_ENV: staging
+    #   REACT_APP_API_BASE_URL: https://your-public-url-staging.example.com
+    #   REACT_APP_DEPLOYMENT_ENV: staging:optimized
+    #   REACT_APP_BASE_NAME: /cms
+    #   PUBLIC_URL: https://your-public-url-staging.example.com/cms
+    #   BUILD_WHEN_BRANCH_IS: staging
+    #   DISCARD_WHEN_BRANCH_IS: ""
+
+# YAML Configuration anchors - https://learnxinyminutes.com/docs/yaml/
+# Will be evaluated WHILE the YAML is parsed, any valid yaml allowed, substitutions ${XXX} allowed.
+
+alias:
+
+  # The image will be tagged with this, pushed to gcr and referenced with this key in the k8s deployment
+  - &IMAGE_DEPLOY_TAG ${DRONE_COMMIT_SHA}
+
+  # The image name, defaults to lowercase repo name + deploy-env <owner>/<project>-<env>, e.g. aw/aaa-cab-kubernetes-test-dev
+  - &IMAGE_DEPLOY_NAME ${DRONE_REPO,,}-${BUILD_ENV}
+
+  # The full uniquely tagged image name
+  - &IMAGE_DEPLOY_ID ${DRONE_REPO,,}-${BUILD_ENV}:${DRONE_COMMIT_SHA}
+
+  # Which build events should trigger the main pipeline (defaults to all but tags (handled separately))
+  - &BRANCH_BUILD_EVENTS [push, pull_request]
+
+  - &BRANCH_INCLUDE ${BUILD_WHEN_BRANCH_IS}
+  - &BRANCH_EXCLUDE ${DISCARD_WHEN_BRANCH_IS}
+
+  # Pipeline merge helper: only execute if build event received
+  - &WHEN_BRANCH_BUILD_EVENT
+    when:
+      event: *BRANCH_BUILD_EVENTS
+      branch:
+        include: *BRANCH_INCLUDE
+        exclude: *BRANCH_EXCLUDE
+
+  - &DOCKER_BUILD_SETTINGS
+    image: docker:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - |
+        docker build -t ${DRONE_REPO,,}-${BUILD_ENV}:${DRONE_COMMIT_SHA} . \
+          --build-arg REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL} \
+          --build-arg REACT_APP_DEPLOYMENT_ENV=${REACT_APP_DEPLOYMENT_ENV} \
+          --build-arg REACT_APP_BASE_NAME=${REACT_APP_BASE_NAME} \
+          --build-arg PUBLIC_URL=${PUBLIC_URL}
+
+# The actual pipeline building our product
+pipeline:
+
+  # ---------------------------------------------------------------------------
+  # BUILD 
+  # ---------------------------------------------------------------------------
+
+  # branch hit, only single entry of matrix will be built, controlled by WHEN_BRANCH_BUILD_EVENT
+  "docker build (BUILD_ENV=${BUILD_ENV})":
+    group: build
+    <<: *DOCKER_BUILD_SETTINGS
+    <<: *WHEN_BRANCH_BUILD_EVENT
+
+  # tag hit, whole matrix will be built
+  "docker build (BUILD_ENV=${BUILD_ENV})":
+    group: build
+    <<: *DOCKER_BUILD_SETTINGS
+    when:
+      event: tag
+
+# Long living services where the startup order does not matter (otherwise use detach: true)
+services:
+
+  # ---------------------------------------------------------------------------
+  # SERVICES
+  # ---------------------------------------------------------------------------
+
+  "env (BUILD_ENV=${BUILD_ENV})":
+    image: alpine
+    commands:
+      - "env | sort"
+    when:
+      branch:
+        include: *BRANCH_INCLUDE
+        exclude: *BRANCH_EXCLUDE
