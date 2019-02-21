@@ -1,6 +1,6 @@
 {
   "name": "aaa-react-scripts-ts",
-  "version": "3.0.3+cra-v2.1.5",
+  "version": "3.0.4+cra-v2.1.5",
   "description": "Configuration and scripts for Create React App.",
   "repository": "allaboutapps/create-react-app-typescript",
   "license": "MIT",
