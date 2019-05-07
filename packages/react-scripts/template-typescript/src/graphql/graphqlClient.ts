@@ -1,28 +1,25 @@
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient } from "apollo-client";
-import { setContext } from "apollo-link-context";
-import { createHttpLink } from "apollo-link-http";
+import ApolloClient from "apollo-boost";
+import { ErrorResponse } from "../../node_modules/apollo-link-error";
 import { authStore } from "../components/stores/AuthStore";
 import * as config from "../config";
 
-const httpLink = createHttpLink({
-    uri: `${config.API_BASE_URL}/cms-api/graphql`
-});
-
-const authLink = setContext((_, { headers }) => {
-    // get the authentication token from local storage if it exists
-    const token = authStore.credentials ? authStore.credentials.accessToken : null;
-
-    // return the headers to the context so httpLink can read them
-    return {
-        headers: {
-            ...headers,
-            Authorization: token ? `Bearer ${token}` : null
-        }
-    };
-});
-
 export const graphqlClient = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache()
+    uri: `${config.API_BASE_URL}/cms-api/graphql`,
+    async request(operation: any) {
+        // get the authentication token from local storage if it exists
+        const token = authStore.credentials ? authStore.credentials.accessToken : null;
+
+        // return the headers to the context so httpLink can read them
+        operation.setContext({
+            headers: {
+                Authorization: token ? `Bearer ${token}` : null
+            }
+        });
+    },
+    onError(error: ErrorResponse) {
+        const handled = authStore.handleGQLUnauthorized(error);
+        if (!handled) {
+            console.error("Unhandled GQL error", error);
+        }
+    }
 });
