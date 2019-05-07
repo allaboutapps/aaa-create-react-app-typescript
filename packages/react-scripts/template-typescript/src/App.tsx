@@ -15,6 +15,6 @@ const App: React.FunctionComponent = () => {
             </MuiThemeProvider>
         </>
     );
-}
+};
 
 export default App;
