@@ -7,7 +7,8 @@ const locale = {
     "screen.login.invalid_password_or_email": "The password or email address is invalid.",
     "screen.login.error_during_login": "An error occured while logging in.",
     "screen.login.form.email.validation_error": "Please enter a valid email address",
-    "screen.login.form.password.validation_error": "Please enter a valid password"
+    "screen.login.form.password.validation_error": "Please enter a valid password",
+    "screen.login.form.submit": "Login"
 };
 
 export type IAvailableI18nIds = typeof locale;

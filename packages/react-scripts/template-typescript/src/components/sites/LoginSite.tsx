@@ -141,7 +141,7 @@ class LoginSite extends React.Component<IProps, IState> {
                             }
 
                             <CustomPrimaryButton fullWidth disabled={!this.state.canSubmit} style={{ marginTop: 24 }} type="submit">
-                                Anmelden
+                                {ui.__("screen.login.form.submit")}
                             </CustomPrimaryButton>
                         </Formsy.default>
                     </div>
