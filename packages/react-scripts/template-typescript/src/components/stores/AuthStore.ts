@@ -1,9 +1,7 @@
 import { action, observable } from "mobx";
 import { create, persist } from "mobx-persist";
-import { APIClientStatusCodeError } from "network-stapler";
 import * as config from "../../config";
-import { API } from "../network/API";
-import APIClient from "../network/APIClient";
+import { API, STATUS_CODE_UNAUTHORIZED } from "../network/API";
 
 export interface ICredentials {
     accessToken: string;
@@ -37,33 +35,30 @@ class Auth {
         }
 
         this.isLoading = true;
-        const target = API.loginWithPassword(username, password);
 
-        return APIClient.requestType(target)
-            .then((credentials: any) => {
-                this.error = null;
-                this.username = username;
-                this.isLoading = false;
-                this.credentials = credentials;
-
-                // This has to be last! Because setting isAuthenticated to true triggers the <PublicRoute> component
-                // to start redirecting in which case the credentials must be valid.
-                this.isAuthenticated = true;
-
-            }).catch((error: any) => {
-                this.isLoading = false;
-
-                if (error instanceof APIClientStatusCodeError) {
-                    if (error.statusCode === 422) {
-                        this.wipe("PasswordWrong");
-                    } else {
-                        this.wipe("Unknown");
-                    }
-                } else {
-                    this.wipe("Unknown");
-                }
+        try {
+            const credentials = await API.loginWithPassword({
+                username: username,
+                password: password
             });
 
+            this.error = null;
+            this.username = username;
+            this.isLoading = false;
+            this.credentials = credentials;
+
+            // This has to be last! Because setting isAuthenticated to true triggers the <PublicRoute> component
+            // to start redirecting in which case the credentials must be valid.
+            this.isAuthenticated = true;
+        } catch (error) {
+            this.isLoading = false;
+
+            if (error.statusCode === STATUS_CODE_UNAUTHORIZED) {
+                this.wipe("PasswordWrong");
+            } else {
+                this.wipe("Unknown");
+            }
+        }
     }
 
     @action logout() {
@@ -105,6 +100,27 @@ class Auth {
         } catch (e) {
             this.wipe("Unknown");
         }
+    }
+
+    @action handleGQLUnauthorized = async (error: any) => {
+        if (error &&
+            error.networkError &&
+            error.networkError.statusCode === STATUS_CODE_UNAUTHORIZED
+        ) {
+            if (this.credentials) {
+                try {
+                    await this.tokenExchange();
+                } catch {
+                    this.wipe(null);
+                }
+            } else {
+                this.wipe(null);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     @action private wipe(error: AuthError | null) {
