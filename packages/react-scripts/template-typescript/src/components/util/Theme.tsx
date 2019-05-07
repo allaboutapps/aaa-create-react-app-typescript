@@ -2,6 +2,10 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { Styles } from "./Styles";
 
 const theme = createMuiTheme({
+    typography: {
+        // https://material-ui.com/style/typography/#migration-to-typography-v2
+        useNextVariants: true
+    }
     // palette: {
     //   primary: {
     //     main: Styles.MAIN_COLOR
