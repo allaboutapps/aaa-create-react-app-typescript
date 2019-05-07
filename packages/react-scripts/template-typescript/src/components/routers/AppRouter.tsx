@@ -14,6 +14,7 @@ import { DashboardRouter } from "./DashboardRouter";
 import { history } from "./history";
 import { PrivateRoute } from "./PrivateRoute";
 import { Routes } from "./Routes";
+import { RoutingManager } from "./RoutingManager";
 
 type IProps = i18n.InjectedIntlProps;
 
@@ -31,11 +32,13 @@ class AppRouter extends React.Component<IProps> {
             <>
                 <ApolloProvider client={graphqlClient}>
                     <Router history={history}>
-                        <Switch>
-                            <Route exact path={Routes.ROOT} component={LoginSite} />
-                            <PrivateRoute path={Routes.DASHBOARD.ROOT} component={DashboardRouter} />
-                            <Route component={NotFoundSite} />
-                        </Switch>
+                        <RoutingManager>
+                            <Switch>
+                                <Route exact path={Routes.ROOT} component={LoginSite} />
+                                <PrivateRoute path={Routes.DASHBOARD.ROOT} component={DashboardRouter} />
+                                <Route component={NotFoundSite} />
+                            </Switch>
+                        </RoutingManager>
                     </Router>
                     <LoadingOverlay isVisible={generalStore.isLoading} />
                 </ApolloProvider>
