@@ -6,6 +6,15 @@ import { IFormsyComponentProps } from "../externals/IFormsyComponentProps";
 
 type IProps = IFormsyComponentProps & TextFieldProps & {
     showErrorOnBlurOnly: boolean;
+    /**
+     * Specify validations on input and prevent invalid input.
+     * Example:
+     * inputValidations={[
+     *      FormValidations.isNumeric,
+     *      FormValidations.isInRange(0, 50)
+     * ]}
+     */
+    inputValidations?(value: string): boolean | ((value: string) => boolean)[];
     onBlur?(): any;
 };
 
@@ -23,6 +32,22 @@ class CustomInputFieldUnwrapped extends React.Component<IProps, IState> {
     }
 
     changeValue = (event: any) => {
+        // Check input validations and return in case value is not valid
+        // which discards changes.
+        if (this.props.inputValidations) {
+            if (typeof this.props.inputValidations === "function") {
+                if (!this.props.inputValidations(event.currentTarget.value)) {
+                    return;
+                }
+            } else if ((this.props.inputValidations as any) instanceof Array) {
+                for (const validator of (this.props.inputValidations as Function[])) {
+                    if (!validator(event.currentTarget.value)) {
+                        return;
+                    }
+                }
+            }
+        }
+
         if (this.props.onChange) {
             this.props.onChange(event);
         }
@@ -67,6 +92,7 @@ class CustomInputFieldUnwrapped extends React.Component<IProps, IState> {
                     required={this.props.required}
                     error={!!errorMessage}
                     margin="dense"
+                    aria-label={this.props["aria-label"]}
                 />
                 <span
                     style={{

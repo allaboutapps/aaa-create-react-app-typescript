@@ -1,7 +1,5 @@
 import Button, { ButtonProps } from "@material-ui/core/Button";
 import * as React from "react";
-import { Styles } from "../util/Styles";
-import { ui } from "../util/UIHelpers";
 
 type IProps = {} & ButtonProps;
 interface IState { }
