@@ -5,6 +5,7 @@ import { authStore, ICredentials } from "../stores/AuthStore";
 
 export const STATUS_CODE_UNAUTHORIZED = 401;
 
+// eslint-disable-next-line
 function getAuthHeaders() {
     return {
         Authorization: `Bearer ${authStore.credentials && authStore.credentials.accessToken}`
