@@ -5,18 +5,16 @@ import { AppRouter } from "./components/routers/AppRouter";
 import { theme } from "./components/util/Theme";
 import baseLocale from "./i18n/en";
 
-class App extends React.Component {
-    render() {
-        return (
-            <>
-                <MuiThemeProvider theme={theme}>
-                    <IntlProvider locale="en" messages={baseLocale}>
-                        <AppRouter />
-                    </IntlProvider>
-                </MuiThemeProvider>
-            </>
-        );
-    }
+const App: React.FunctionComponent = () => {
+  return (
+    <>
+      <MuiThemeProvider theme={theme}>
+        <IntlProvider locale="en" messages={baseLocale}>
+          <AppRouter />
+        </IntlProvider>
+      </MuiThemeProvider>
+    </>
+  );
 }
 
 export default App;
