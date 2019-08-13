@@ -2,6 +2,21 @@
 
 > A customized react-scripts fork for [allaboutapps](https://allaboutapps.at)
 
+# Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)
+
+Create React apps with no build configuration.
+
+- [Creating an App](#creating-an-app) – How to create a new app.
+- [User Guide](https://facebook.github.io/create-react-app/) – How to develop apps bootstrapped with Create React App.
+
+Create React App works on macOS, Windows, and Linux.<br>
+If something doesn’t work, please [file an issue](https://github.com/facebook/create-react-app/issues/new).<br>
+If you have questions or need help, please ask in our [Spectrum](https://spectrum.chat/create-react-app) community.
+
+**You’ll need to have Node 8.16.0 or Node 10.16.0 or later version on your local development machine** (but it’s not required on the server). You can use [nvm](https://github.com/creationix/nvm#installation) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to easily switch Node versions between different projects.
+
+## Quick Overview
+
 ```sh
 node -v
 # v10.x.x
@@ -28,7 +43,6 @@ Starting with `aaa-react-scripts-ts@v3` which is based on `react-scripts@v2` we 
 Format: `<MAJOR>.<MINOR>.<PATCH>+cra-v<CRAMAJOR>.<CRAMINOR>.<CRAPATCH>`
 
 E.g.: `3.0.1+cra-v2.1.3`.
-
 Major CRA updates will also result in a bump of `aaa-react-scripts-ts`.
 
 ### Publishing
