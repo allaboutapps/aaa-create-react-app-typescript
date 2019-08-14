@@ -328,30 +328,6 @@ module.exports = function(webpackEnv) {
 
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
-        // {
-        //   test: /\.(js|mjs|jsx)$/,
-        //   enforce: 'pre',
-        //   use: [
-        //     {
-        //       options: {
-        //         formatter: require.resolve('react-dev-utils/eslintFormatter'),
-        //         eslintPath: require.resolve('eslint'),
-        //         // @remove-on-eject-begin
-        //         baseConfig: {
-        //           extends: [require.resolve('eslint-config-react-app')],
-        //         },
-        //         ignore: false,
-        //         useEslintrc: false,
-        //         // @remove-on-eject-end
-        //       },
-        //       loader: require.resolve('eslint-loader'),
-        //     },
-        //   ],
-        //   include: paths.appSrc,
-        // },
-        // AAA:
-        // we don't need the eslint linter for normal js file, but the typescript linter!
-        // potentially disable when https://github.com/facebook/create-react-app/issues/5641 gets merged!
         {
           test: /\.(js|mjs|jsx|ts|tsx)$/,
           enforce: 'pre',
@@ -371,14 +347,8 @@ module.exports = function(webpackEnv) {
                     // A config couldn't be found.
                   }
 
-                  // We allow overriding the config, only if it extends our config
-                  // (`extends` can be a string or array of strings).
-                  if (
-                    process.env.EXTEND_ESLINT &&
-                    eslintConfig &&
-                    eslintConfig.extends &&
-                    eslintConfig.extends.includes('react-app')
-                  ) {
+                  // We allow overriding the config only if the env variable is set
+                  if (process.env.EXTEND_ESLINT && eslintConfig) {
                     return eslintConfig;
                   } else {
                     return {

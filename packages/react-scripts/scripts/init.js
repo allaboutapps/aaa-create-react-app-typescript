@@ -102,8 +102,8 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'aaa-react-scripts-ts start',
-    build: 'aaa-react-scripts-ts build',
+    start: 'EXTEND_ESLINT=true aaa-react-scripts-ts start',
+    build: 'EXTEND_ESLINT=true aaa-react-scripts-ts build',
     test: 'aaa-react-scripts-ts test --env=jsdom',
     eject: 'aaa-react-scripts-ts eject',
     apollo: 'apollo',
