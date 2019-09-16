@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 class GeneralStore {
-    @observable isLoading: boolean = false;
+    @observable isLoading = false;
 }
 
 const generalStore: GeneralStore = new GeneralStore();

@@ -21,11 +21,11 @@ export type AuthError = "PasswordWrong" | "Unknown";
 class Auth {
     @persist("object") @observable credentials: ICredentials | null = null;
     @persist("object") @observable userProfile: IProfile | null = null;
-    @persist @observable username: string = "";
+    @persist @observable username = "";
     @observable error: AuthError | null = null;
-    @observable isAuthenticated: boolean = false;
-    @observable isLoading: boolean = false;
-    @observable isRehydrated: boolean = false;
+    @observable isAuthenticated = false;
+    @observable isLoading = false;
+    @observable isRehydrated = false;
     @observable globalLegalUpdatedAt: string | null = null;
 
     @action loginWithPassword = async (username: string, password: string) => {
@@ -136,9 +136,9 @@ let authStore: Auth;
 if (process.env.NODE_ENV === "test") {
     class MockAuth {
         @observable credentials: any = null;
-        @observable isAuthenticated: boolean = false;
+        @observable isAuthenticated = false;
         @observable error: any = null;
-        @observable isRehydrated: boolean = true;
+        @observable isRehydrated = true;
 
         @action loginWithPassword = () => undefined;
         @action dismissError = () => undefined;
