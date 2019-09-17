@@ -1,8 +1,8 @@
 import Button, { ButtonProps } from "@material-ui/core/Button";
 import * as React from "react";
 
-type IProps = {} & ButtonProps;
-interface IState { }
+type IProps = ButtonProps;
+type IState = {};
 
 class CustomPrimaryButton extends React.Component<IProps, IState> {
     render() {
@@ -16,7 +16,6 @@ class CustomPrimaryButton extends React.Component<IProps, IState> {
                     borderRadius: 24,
                     ...style
                 }}
-                fullWidth={this.props.fullWidth}
                 {...otherProps}
             >
                 {this.props.children}

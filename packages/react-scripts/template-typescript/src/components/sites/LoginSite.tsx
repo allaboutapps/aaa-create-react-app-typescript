@@ -1,17 +1,17 @@
 import * as Formsy from "formsy-react";
 import { observer } from "mobx-react";
 import * as React from "react";
-import { RouteComponentProps } from "react-router";
 import { Routes } from "../routers/Routes";
 import { authStore } from "../stores/AuthStore";
 import { generalStore } from "../stores/GeneralStore";
 import { CustomInputField } from "../ui/CustomInputField";
 import { CustomPrimaryButton } from "../ui/CustomPrimaryButton";
 import { Images } from "../util/Images";
-import { ui } from "../util/UIHelpers";
+import { t } from "../../i18n/util";
+import { history } from "../routers/history";
 
-type IProps = RouteComponentProps & {};
-interface IState {
+type IProps = {};
+type IState = {
     canSubmit: boolean;
     error: string;
 }
@@ -23,18 +23,14 @@ interface ILoginValues {
 
 @observer
 class LoginSite extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-
-        this.state = {
-            canSubmit: false,
-            error: ""
-        };
+    state: IState = {
+        canSubmit: false,
+        error: ""
     }
 
-    componentWillUpdate() {
+    componentDidUpdate() {
         if (authStore.isAuthenticated) {
-            this.props.history.push(Routes.DASHBOARD.ROOT);
+            history.push(Routes.DASHBOARD.ROOT);
         }
     }
 
@@ -46,15 +42,15 @@ class LoginSite extends React.Component<IProps, IState> {
             await authStore.loginWithPassword(model.email, model.password);
             if (authStore.error) {
                 if (authStore.error === "PasswordWrong") {
-                    this.setState({ error: ui.__("screen.login.invalid_password_or_email") });
+                    this.setState({ error: t("screen.login.invalid_password_or_email") });
                 } else if (authStore.error === "Unknown") {
-                    this.setState({ error: ui.__("screen.login.error_during_login") });
+                    this.setState({ error: t("screen.login.error_during_login") });
                 }
             } else {
-                this.props.history.push(Routes.DASHBOARD.ROOT);
+                history.push(Routes.DASHBOARD.ROOT);
             }
         } catch (error) {
-            this.setState({ error: ui.__("screen.login.error_during_login") });
+            this.setState({ error: t("screen.login.error_during_login") });
         }
 
         generalStore.isLoading = false;
@@ -107,7 +103,7 @@ class LoginSite extends React.Component<IProps, IState> {
                             fontWeight: "bold"
                         }}
                     >
-                        {ui.__("screen.login.title")}
+                        {t("screen.login.title")}
                     </div>
                     <div style={{ padding: 24, border: "1px solid rgb(253, 128, 72)" }}>
                         <Formsy.default
@@ -117,31 +113,32 @@ class LoginSite extends React.Component<IProps, IState> {
                         >
                             <CustomInputField
                                 name="email"
-                                label="E-Mail"
+                                label={t("screen.login.form.email.label")}
                                 type="email"
                                 required
                                 autoComplete="username"
                                 validations="isEmail"
-                                validationError={ui.__("screen.login.form.email.validation_error")}
+                                validationError={t("screen.login.form.email.validation_error")}
                                 showErrorOnBlurOnly
                             />
 
                             <CustomInputField
                                 name="password"
-                                label="Passwort"
+                                label={t("screen.login.form.password.label")}
                                 type="password"
                                 required
                                 autoComplete="current-password"
                                 validations="minLength:6"
-                                validationError={ui.__("screen.login.form.password.validation_error")}
+                                validationError={t("screen.login.form.password.validation_error")}
                             />
 
-                            {this.state.error &&
-                                <div style={{ color: "#f00", fontSize: 14 }}>{this.state.error}</div>
+                            {this.state.error && <div style={{ color: "#f00", fontSize: 14 }}>
+                                {this.state.error}
+                            </div>
                             }
 
                             <CustomPrimaryButton fullWidth disabled={!this.state.canSubmit} style={{ marginTop: 24 }} type="submit">
-                                {ui.__("screen.login.form.submit")}
+                                {t("screen.login.form.submit")}
                             </CustomPrimaryButton>
                         </Formsy.default>
                     </div>

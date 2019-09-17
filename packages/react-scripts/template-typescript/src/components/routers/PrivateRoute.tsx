@@ -17,13 +17,13 @@ const PrivateRoute: any = observer(({ component: Component, ...rest }: any): any
                 authStore.isAuthenticated ? (
                     <Component {...props} />
                 ) : (
-                    <Redirect
-                        to={{
-                            pathname: Routes.ROOT,
-                            state: { from: props.location }
-                        }}
-                    />
-                )
+                        <Redirect
+                            to={{
+                                pathname: Routes.ROOT,
+                                state: { from: props.location }
+                            }}
+                        />
+                    )
             }
         />
     );

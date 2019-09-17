@@ -1,20 +1,23 @@
 import { MuiThemeProvider } from "@material-ui/core";
+import { observer } from "mobx-react";
 import * as React from "react";
-import { IntlProvider } from "react-intl";
+import { RawIntlProvider } from "react-intl";
 import { AppRouter } from "./components/routers/AppRouter";
 import { theme } from "./components/util/Theme";
-import baseLocale from "./i18n/en";
+import { intl } from "./i18n/util";
+import { generalStore } from "./components/stores/GeneralStore";
+import { FormValidations } from "./components/util/FormValidations";
 
-const App: React.FunctionComponent = () => {
+FormValidations.addRules();
+
+const App: React.FunctionComponent = observer(() => {
     return (
-        <>
-            <MuiThemeProvider theme={theme}>
-                <IntlProvider locale="en" messages={baseLocale}>
-                    <AppRouter />
-                </IntlProvider>
-            </MuiThemeProvider>
-        </>
+        <MuiThemeProvider theme={theme}>
+            <RawIntlProvider value={intl} key={generalStore.locale}>
+                <AppRouter />
+            </RawIntlProvider>
+        </MuiThemeProvider>
     );
-};
+});
 
 export default App;
