@@ -5,10 +5,10 @@ import { Routes } from "../routers/Routes";
 import { authStore } from "../stores/AuthStore";
 import { generalStore } from "../stores/GeneralStore";
 import { CustomInputField } from "../ui/CustomInputField";
-import { CustomPrimaryButton } from "../ui/CustomPrimaryButton";
 import { Images } from "../util/Images";
 import { t } from "../../i18n/util";
 import { history } from "../routers/history";
+import Button from "@material-ui/core/Button";
 
 type IProps = {};
 type IState = {
@@ -137,9 +137,18 @@ class LoginSite extends React.Component<IProps, IState> {
                             </div>
                             }
 
-                            <CustomPrimaryButton fullWidth disabled={!this.state.canSubmit} style={{ marginTop: 24 }} type="submit">
+                            <Button
+                                variant="contained"
+                                style={{
+                                    boxShadow: "none",
+                                    borderRadius: 24,
+                                    marginTop: 24
+                                }}
+                                fullWidth disabled={!this.state.canSubmit}
+                                type="submit"
+                            >
                                 {t("screen.login.form.submit")}
-                            </CustomPrimaryButton>
+                            </Button>
                         </Formsy.default>
                     </div>
                 </div>
