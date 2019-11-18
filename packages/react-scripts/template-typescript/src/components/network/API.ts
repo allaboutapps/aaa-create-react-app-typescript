@@ -22,13 +22,12 @@ export const API = {
     async loginWithPassword(options: { username: string; password: string }): Promise<ICredentials> {
         try {
             const response = await fetch(
-                `${Config.API_BASE_URL}/api/v1/auth/token`,
+                `${Config.API_BASE_URL}/api/v1/auth/login`,
                 {
                     method: "POST",
                     body: JSON.stringify({
                         username: options.username,
                         password: options.password,
-                        grantType: "password",
                         scope: "cms"
                     })
                 }

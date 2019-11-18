@@ -60,6 +60,9 @@ class CustomInputFieldUnwrapped extends React.Component<IProps, IState> {
             this.props.onBlur();
         }
 
+        // Trim whitespace characters on blur.
+        this.props.setValue(this.props.getValue() && this.props.getValue().trim());
+
         this.setState({
             blurred: true
         });

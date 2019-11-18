@@ -73,12 +73,10 @@ class Auth {
                 throw new Error(`No valid credentials are available`);
             }
 
-            const res = await fetch(`${config.API_BASE_URL}/api/v1/auth/token`, {
+            const res = await fetch(`${config.API_BASE_URL}/api/v1/auth/refresh`, {
                 method: "POST",
                 body: JSON.stringify({
-                    refreshToken: this.credentials.refreshToken,
-                    grantType: "refreshToken",
-                    scope: "cms"
+                    refreshToken: this.credentials.refreshToken
                 })
             });
 

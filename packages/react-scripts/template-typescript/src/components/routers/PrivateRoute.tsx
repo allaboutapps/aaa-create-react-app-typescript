@@ -5,7 +5,6 @@ import { authStore } from "../stores/AuthStore";
 import { Routes } from "./Routes";
 
 const PrivateRoute: any = observer(({ component: Component, ...rest }: any): any => {
-
     if (authStore.isRehydrated === false) {
         return null;
     }

@@ -12,14 +12,15 @@ class LoadingOverlay extends React.Component<IProps, IState> {
             <div
                 style={{
                     display: this.props.isVisible ? "flex" : "none",
-                    position: "absolute",
+                    position: "fixed",
                     width: "100%",
                     height: "100%",
                     background: "rgba(0, 0, 0, 0.75)",
                     alignItems: "center",
                     justifyContent: "center",
                     left: 0,
-                    top: 0
+                    top: 0,
+                    zIndex: 9999
                 }}
             >
                 <CircularProgress color="secondary" />

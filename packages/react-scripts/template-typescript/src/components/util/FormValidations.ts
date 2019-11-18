@@ -1,6 +1,10 @@
 import * as Formsy from "formsy-react";
 
 function isNumeric(value: string) {
+    if (value === undefined) {
+        return false;
+    }
+
     return value.length === 0 || /^[0-9]+$/i.test(value);
 }
 
