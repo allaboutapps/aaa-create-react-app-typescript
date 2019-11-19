@@ -74,7 +74,7 @@ git push origin-github v3.0.1-cra-v2.1.5
 
 cd packages/react-scripts
 
-nvmrc # ensure you use the right npm registry!
+npmrc # ensure you use the right npm registry!
 
 # finally run publish!
 npm publish
