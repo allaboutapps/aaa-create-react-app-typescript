@@ -11,6 +11,7 @@ module.exports = function getConfig(config, isProduction) {
     // config.module.noParse = /node_modules\/localforage\/dist\/localforage.js/;
 
     const licenseChecker = new LicenseCheckerWebpackPlugin({
+        allow: '(Apache-2.0 OR BSD-2-Clause OR BSD-3-Clause OR MIT OR ISC)',
         outputFilename: 'ThirdPartyNotices.txt',
     });
     config.plugins.push(licenseChecker);
